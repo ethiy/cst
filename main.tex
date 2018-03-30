@@ -3,13 +3,29 @@
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 
+\usepackage[acronym]{glossaries}
+
+\usepackage{enumitem}
+
+\usepackage{xcolor}
+
+\usepackage{booktabs}
+
+\usepackage[font={small, color=IGNDarkGrey}, labelfont={bf, color=IGNGreen}]{caption}
+
+
+\usetheme{ign}
+
+
+\newacronym{lod}{LoD}{Level of Detail}
+\newacronym{lidar}{LiDAR}{Light Detection and Ranging}
+\newacronym{dsm}{DSM}{Digital Surface Model}
+
 \title{Semantic $3D$ building model diagnostic}
 \subtitle{}
 \institute[LaSTIG MATIS]{Univ. Paris Est, LaSTIG MATIS, IGN, ENSG}
 \date{\today}
 \author[O.Ennafii]{Oussama Ennafii}
-
-\usetheme{ign}
 
 \begin{document}
 
@@ -18,9 +34,110 @@
     \end{frame}
 
     \section{Introduction}
+        \subsection{Context}
+            \begin{frame}{What is a $3D$ model?}
+                \begin{itemize}[label=$\blacktriangleright$, font=\color{IGNGreen}]
+                    \item<1-> $3D$ urban model $\equiv$ polyhedral surface modeling a building;
+                    \item<2-> Holds higher semantic information than a $3D$ mesh while using less memory;
+                \end{itemize}
+                \uncover<3->{
+                    \begin{figure}[H]
+                        \begin{center}
+                            \includegraphics[height=.2\textheight]{images/citygml_lod}
+                            \caption{\label{fig::lods_citygml} \gls{lod}~\cite{kolbe2005citygml} representation as defined in the \emph{cityGML} format~\cite{ohori2016higher}.}
+                        \end{center}
+                    \end{figure}
+                }
+            \end{frame}
+
+            \begin{frame}{What is urban reconstruction?}
+                \begin{itemize}[label=$\blacktriangleright$, font=\color{IGNGreen}]
+                    \item<1-> The aim is to model urban objects, on a large scale, using:
+                    \begin{itemize}[label=--]
+                        \item<2-> unstructured data: \gls{lidar};
+                        \item<3-> structured data: stereoscopic images.
+                    \end{itemize}
+                    \item<3-> The model \gls{lod} depends on:
+                    \begin{itemize}[label=--]
+                        \item<4-> their intended use,
+                        \item<5-> the input data spatial resolution.
+                    \end{itemize}
+                \end{itemize}
+            \end{frame}
+
+            \begin{frame}{Urban models applications}
+                \begin{itemize}[label=$\blacktriangleright$, font=\color{IGNGreen}]
+                    \item Urban models have a wide application range~\cite{Biljecki2015} (\textit{c.f.} Table~\ref{tab::3d_applications});
+                \end{itemize}
+                \begin{table}
+                    \begin{center}
+                        \begin{tabular}{l l l}
+                            \toprule
+                            Planning & Simulation & Visualization \\
+                            \midrule
+                            City planning & Micro climates & Architecture \\
+                            Emergency intervention & Wave propagation & Cadastre \\
+                            Home decoration & Run-off water & Tourism \\
+                            Communication network & Military intervention & Video games \\
+                            \bottomrule
+                        \end{tabular}
+                        \caption{\label{tab::3d_applications} Some of the main thematic applications of $3D$ urban models~\cite{Biljecki2015, Scholze2002}.}
+                    \end{center}
+                \end{table}
+            \end{frame}
+        \subsection{Motivation}
+            \begin{frame}{The need for quality assessement}
+                \begin{itemize}[label=$\blacktriangleright$, font=\color{IGNGreen}]
+                    \item<1-> Automatic urban modeling is an active research area~\cite{Musialski2012}, but not \textcolor{IGNRed}{yet operational}~\cite{rottensteiner2014results};
+                    \item<2-> Urban $3D$ model semantic diagnostic is not well studied~\cite{nguatem2017modeling}.
+                \end{itemize}
+                ~\\
+                \begin{itemize}[label=Goal $\longrightarrow$, font=\color{purple}, leftmargin=2cm]
+                    \item Detect and describe semantic errors that affects building $3D$ models.
+                \end{itemize}
+            \end{frame}
+
+            \begin{frame}{Motivation}{Potential use}
+                \begin{itemize}[label=$\blacktriangleright$, font=\color{IGNGreen}]
+                    \item<1-> Change detection;
+                    \item<2-> Urban models correction;
+                    \item<3-> Urban reconstruction method evaluation;
+                    \item<4-> Crowd reconstruction quality assessment.
+                \end{itemize}
+            \end{frame}
+        \subsection{Contributions}
+            \begin{frame}{Taxonomy}
+                Taxonomy of $3D$ models errors:
+                \uncover<2->{
+                    \begin{enumerate}[label = (\roman*).]
+                        \item<2-> flexible: can suit any \gls{lod} or semantic degree.
+                        \item<3-> independent: from input urban scene type or recontruction method.
+                    \end{enumerate}
+                }
+            \end{frame}
+
+            \begin{frame}{Methodology}
+                The problem is modeled as a supervised learning one based on the established taxonomy:
+                \begin{enumerate}[label = (\roman*).]
+                    \item<2-> fast: does not involve heavy computing at runtime;
+                    \item<3-> modular: can use multiple entries:
+                    \begin{itemize}[label=--]
+                        \item<4-> the model itself;
+                        \item<5-> the corresponding \gls{dsm};
+                        \item<6-> the corresponding orthoimage.
+                    \end{itemize}
+                    \item<7-> lightweight: does not involve heavy reference data.
+                \end{enumerate}
+            \end{frame}
     \section{State of the art}
     \section{Error taxonomy}
     \section{Methodology}
     \section{Used Tools}
     \section{Conclusion}
+
+    \section*{References}
+        \begin{frame}[allowframebreaks]{References}
+            \bibliographystyle{alpha}
+            \bibliography{references.bib}
+        \end{frame}
 \end{document}
