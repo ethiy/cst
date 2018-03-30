@@ -97,37 +97,13 @@
                 \end{itemize}
             \end{frame}
 
-            \begin{frame}{Motivation}{Potential use}
+            \begin{frame}{Potential use}
                 \begin{itemize}[label=$\blacktriangleright$, font=\color{IGNGreen}]
                     \item<1-> Change detection;
                     \item<2-> Urban models correction;
                     \item<3-> Urban reconstruction method evaluation;
                     \item<4-> Crowd reconstruction quality assessment.
                 \end{itemize}
-            \end{frame}
-        \subsection{Contributions}
-            \begin{frame}{Taxonomy}
-                Taxonomy of $3D$ models errors:
-                \uncover<2->{
-                    \begin{enumerate}[label = (\roman*).]
-                        \item<2-> flexible: can suit any \gls{lod} or semantic degree.
-                        \item<3-> independent: from input urban scene type or recontruction method.
-                    \end{enumerate}
-                }
-            \end{frame}
-
-            \begin{frame}{Methodology}
-                The problem is modeled as a supervised learning one based on the established taxonomy:
-                \begin{enumerate}[label = (\roman*).]
-                    \item<2-> fast: does not involve heavy computing at runtime;
-                    \item<3-> modular: can use multiple entries:
-                    \begin{itemize}[label=--]
-                        \item<4-> the model itself;
-                        \item<5-> the corresponding \gls{dsm};
-                        \item<6-> the corresponding orthoimage.
-                    \end{itemize}
-                    \item<7-> lightweight: does not involve heavy reference data.
-                \end{enumerate}
             \end{frame}
     \section{State of the art}
     \section{Error taxonomy}
