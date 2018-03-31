@@ -1,0 +1,56 @@
+\documentclass[tikz, border=7pt]{standalone}
+
+\usepackage[T1]{fontenc}
+\usepackage{fourier}
+\usepackage[english]{babel}
+
+\usepackage{xcolor}
+
+\usepackage{tikz}
+\usetikzlibrary[positioning]
+\usetikzlibrary{patterns}
+
+\begin{document}
+
+\tikzset{
+	data/.style={
+		draw,
+		minimum height = 1cm,
+		minimum width  = 8cm,
+		fill           = yellow!20
+	}
+}
+\tikzset{
+	output/.style={
+		draw,
+		minimum height = 4 cm,
+		minimum width  = 1 cm,
+		fill           = yellow!30
+	}
+}
+\tikzset{
+	intersection/.style={
+		draw,
+		minimum height = 4 cm,
+		minimum width  = 8 cm,
+		fill           = red!30
+	}
+}
+
+
+	\begin{tikzpicture}
+		\node[data]  (manual) {\textbf{Manual reference data}};
+		\path (manual.east) + (4, 0) node[data] (sensor) {\textbf{Sensor data}};
+		\path (manual.north west) + (-.5, 2) node[output] (semantic_errors) {\rotatebox{90}{\textbf{Semantic errors}}};
+		\path (semantic_errors.north) + (0, 2) node[output] (geom_ind) {\rotatebox{90}{\textbf{Geometric indices}}};
+	
+		\path (manual.north) + (0, 2) node[intersection] (manual_semantic) {\cite{Akca2010}};
+		\path (manual_semantic.north) + (0, 2) node[intersection] (manual_indx) {};
+		\path (sensor.north) + (0, 2) node[intersection] (sensor_semantic) {};
+		\path (sensor_semantic.north) + (0, 2) node[intersection] (sensor_indx) {};
+	\end{tikzpicture}
+	\ifstandalone
+	\bibliographystyle{apalike}
+	\bibliography{references}
+	\fi
+\end{document} 

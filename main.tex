@@ -3,6 +3,8 @@
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 
+\usepackage{standalone}
+
 \usepackage[acronym]{glossaries}
 
 \usepackage{enumitem}
@@ -86,15 +88,17 @@
                 \end{table}
             \end{frame}
         \subsection{Motivation}
-            \begin{frame}{The need for quality assessement}
+            \begin{frame}{The need for self diagnostic}
                 \begin{itemize}[label=$\blacktriangleright$, font=\color{IGNGreen}]
                     \item<1-> Automatic urban modeling is an active research area~\cite{Musialski2012}, but not \textcolor{IGNRed}{yet operational}~\cite{rottensteiner2014results};
                     \item<2-> Urban $3D$ model semantic diagnostic is not well studied~\cite{nguatem2017modeling}.
                 \end{itemize}
 ~\\
-                \begin{itemize}[label=Goal $\longrightarrow$, font=\color{purple}, leftmargin=2cm]
-                    \item Detect and describe semantic errors that affects building $3D$ models.
-                \end{itemize}
+                \uncover<3->{
+                	\begin{itemize}[label=Goal $\longrightarrow$, font=\color{purple}, leftmargin=2cm]
+                		\item Detect and describe semantic errors that affects building $3D$ models.
+                	\end{itemize}
+                }
             \end{frame}
 
             \begin{frame}{Potential use}
@@ -111,7 +115,7 @@
                 \item Based on the output:
                 \begin{itemize}[label=--]
                     \item Geometric precision indices (distance error measurements, completness ratios \dots);
-                    \item Error taxonomy: categorized semantic errors.
+                    \item Semantic errors: categorized topologic and geometric errors.
                 \end{itemize}
                 \item Based on the reference data:
                 \begin{itemize}[label=--]
@@ -136,6 +140,13 @@
             \begin{frame}{Sensor data}
 
             \end{frame}
+        \subsection{Summary}
+        	\begin{frame}[plain]{Summary}
+        		\begin{figure}
+        			\includestandalone[mode=buildnew, width=\textwidth]{state_of_the_art}
+        			\caption{\label{fig::bib_summary} State of the art summary.}
+        		\end{figure}
+        	\end{frame}
     \section{Error taxonomy}
     \section{Methodology}
     \section{Used Tools}
