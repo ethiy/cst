@@ -126,14 +126,27 @@
         \end{frame}
         \subsection{Different types of output}
             \begin{frame}{Geometric precision indices}
-
+            	Compute precision ratios from the $3D$ model which describes its quality.\\
+            	At different scales:
+				\begin{itemize}[label=$\blacktriangleright$, font=\color{IGNGreen}]
+					\item<1-> Points of interest average precision~\cite{Zeng2014, Voegtle2003},
+					\item<2-> Surface discrepency to reference data~\cite{Zeng2014, Henricsson1997},
+					\item<3-> Volume discrepency to reference data~\cite{Zeng2014}.
+				\end{itemize}
+			\uncover<4->{
+				Disadvantages:
+				\begin{itemize}[label=$-$, font=\color{IGNRed}]
+					\item<5-> Too general,
+					\item<6-> No semantics; thus no hierarchy.
+				\end{itemize}
+			}
             \end{frame}
 
-            \begin{frame}{Error taxonomy}
-
+            \begin{frame}{Semantic errors}
+				Identify the topologic or geometric errors that affects 
             \end{frame}
         \subsection{Different types of reference data}
-            \begin{frame}{Manually obtained data}
+            \begin{frame}{Manual reference data}
 
             \end{frame}
 

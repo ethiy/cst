@@ -1,0 +1,59 @@
+\documentclass[tikz, border=7pt]{standalone}
+
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+
+\usepackage{xcolor}
+\definecolor{wheat}{RGB}{245,222,179}
+
+\usepackage{tikz}
+
+\begin{document}
+\usetikzlibrary{shapes,arrows,shadows,calc}
+\tikzstyle{data}=[
+	draw, 
+	text centered, 
+	minimum height=2.5em, 
+	drop shadow, 
+	rounded corners
+]
+
+	\begin{tikzpicture}
+		\node[data, fill={rgb,255:red,239;green,230;blue,28}] (model) {$3D$ model};
+		
+		\path (model.east) + (5, 0) node[data, fill={rgb,255:red,101;green,203;blue,94}] (graph) {Facet graph structure};
+		\path (model.east) + (5, -4) node[data, fill={rgb,255:red,101;green,203;blue,94}] (vector) {Model projection to $(O, \vec{i}, \vec{j})$};\\
+		\path (model.east) + (4, -6) node[data, fill={rgb,255:red,239;green,230;blue,28}] (ortho) {Orthoimage};
+		\path (model.east) + (5, -10) node[data, fill={rgb,255:red,101;green,203;blue,94}] (raster) {Model $z$ profile};
+		\path (model.east) + (4, -12) node[data, fill={rgb,255:red,239;green,230;blue,28}] (dsm) {DSM};
+		
+		\path (graph.east) + (10, 0) node[data, fill={rgb,255:red,56;green,88;blue,140}, text=wheat] (geometric) {Geometric features};
+		\path (graph.east) + (10, -4) node[data, fill={rgb,255:red,56;green,88;blue,140}, text=wheat] (radiometric) {Radiometric features};
+		\path (graph.east) + (10, -10) node[data, fill={rgb,255:red,56;green,88;blue,140}, text=wheat] (altimetric) {Altimetric features};
+		
+		\path (radiometric.east) + (5, 0) node[data, fill={rgb,255:red,69;green,50;blue,126}, text=wheat] (features) {Features};
+		
+		\path (features.east) + (5, 0) node[data, fill={rgb,255:red,68;green,13;blue,83}, text=wheat] (errors) {Error list};
+		
+		\path[draw, ->, line width=1mm, rounded corners=10pt, black] (model.east) -- (graph.west);
+		\path[draw, ->, line width=1mm, rounded corners=10pt, black, dashed] (model.east) -| ($(model.east) ! .5 ! (vector.west)$) |- (vector.west);
+		\path[draw, ->, line width=1mm, rounded corners=10pt, black, dashed] (model.east) -| ($(model.east) ! .5 ! (vector.west)$) |- (raster.west);
+		
+		\path[draw, ->, line width=1mm, rounded corners=10pt, orange] (graph.east) -- (geometric.west);
+		\path[draw, ->, line width=.5mm, rounded corners=10pt, orange, dashed] (vector.10) -| ($(vector.10) ! .2 ! (geometric.west)$) |- (geometric.west);
+		
+		\path[draw, ->, line width=1mm, rounded corners=10pt, orange, dashed] (vector.east) -- (radiometric.west);
+		\path[draw, ->, line width=1mm, rounded corners=10pt, orange, dashed] (ortho.east) -| ($(ortho.east) ! .5 ! (radiometric.west)$) |- (radiometric.west);
+		
+		\path[draw, ->, line width=1mm, rounded corners=10pt, orange, dashed] (raster.east) -- (altimetric.west);
+		\path[draw, ->, line width=1mm, rounded corners=10pt, orange, dashed] (dsm.east) -| ($(dsm.east) ! .5 ! (altimetric.west)$) |- (altimetric.west);
+		
+
+		\path[draw, ->, line width=1mm, rounded corners=10pt, black!50!green, dashed] (radiometric.east) -- (features.west);
+		\path[draw, ->, line width=1mm, rounded corners=10pt, black!50!green, dashed] (altimetric.east) -| ($(altimetric.east) ! .5 ! (features.west)$) |- (features.west);
+		\path[draw, ->, line width=1mm, rounded corners=10pt, black!50!green] (geometric.east) -| ($(geometric.east) ! .5 ! (features.west)$) |- (features.west);
+				
+		\path[draw, ->, line width=1mm, rounded corners=10pt, red!80] (features.east) -- (errors.west);
+	\end{tikzpicture}
+
+\end{document}
