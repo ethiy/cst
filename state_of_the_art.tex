@@ -54,10 +54,10 @@
 		\path (manual.north west) + (-.5, 2) node[output] (semantic_errors) {\rotatebox{90}{\textbf{Semantic errors}}};
 		\path (semantic_errors.north) + (0, 2) node[output] (geom_ind) {\rotatebox{90}{\textbf{Geometric indices}}};
 
-		\path (manual.north) + (0, 2) node[intersection] (manual_semantic) {};
-		\path (manual_semantic.north) + (0, 2) node[intersection] (manual_indx) {};
-		\path (sensor.north) + (0, 2) node[intersection] (sensor_semantic) {};
-		\path (sensor_semantic.north) + (0, 2) node[intersection] (sensor_indx) {};
+    \path (manual.north) + (0, 2) node[intersection, color=gray!30] (manual_semantic) {};
+		\path (manual_semantic.north) + (0, 2) node[intersection, left color=red!70, right color=red!20] (manual_indx) {};
+		\path (sensor.north) + (0, 2) node[intersection, left color=gray!30,right color=green!=50] (sensor_semantic) {};
+		\path (sensor_semantic.north) + (0, 2) node[intersection, left color=red!20,right color=purple!=50] (sensor_indx) {};
 
     \path (manual_indx) node[cross, label=below:\cite{Zeng2014}]{};
     \path (manual_indx) + (-1, -1.25) node[cross, label=below:\cite{Voegtle2003}]{};
