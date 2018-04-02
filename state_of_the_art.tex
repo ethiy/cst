@@ -43,14 +43,16 @@
 		\path (manual.east) + (4, 0) node[data] (sensor) {\textbf{Sensor data}};
 		\path (manual.north west) + (-.5, 2) node[output] (semantic_errors) {\rotatebox{90}{\textbf{Semantic errors}}};
 		\path (semantic_errors.north) + (0, 2) node[output] (geom_ind) {\rotatebox{90}{\textbf{Geometric indices}}};
-	
-		\path (manual.north) + (0, 2) node[intersection] (manual_semantic) {\cite{Akca2010}};
+
+		\path (manual.north) + (0, 2) node[intersection] (manual_semantic) {};
 		\path (manual_semantic.north) + (0, 2) node[intersection] (manual_indx) {};
 		\path (sensor.north) + (0, 2) node[intersection] (sensor_semantic) {};
 		\path (sensor_semantic.north) + (0, 2) node[intersection] (sensor_indx) {};
+
+    \path (manual_indx) node (zeng_x) {x\\\cite{Zeng2014}};
 	\end{tikzpicture}
 	\ifstandalone
 	\bibliographystyle{apalike}
 	\bibliography{references}
 	\fi
-\end{document} 
+\end{document}
