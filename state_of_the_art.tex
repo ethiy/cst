@@ -7,6 +7,8 @@
 
 \usepackage{tikz}
 
+\usepackage{bibentry}
+
 
 \begin{document}
 	
@@ -60,16 +62,14 @@
 		\path (sensor.north) + (0, 2) node[intersection, left color=gray!30,right color=green!=50] (sensor_semantic) {};
 		\path (sensor_semantic.north) + (0, 2) node[intersection, left color=red!20,right color=purple!=50] (sensor_indx) {};
 
-	    \path (manual_indx) node[cross, label=below:\cite{Zeng2014}]{};
-	    \path (manual_indx) + (-1, -1.25) node[cross, label=below:\cite{Voegtle2003}]{};
-	    \path (manual_indx) + (1.5, 1) node[cross, label=below:\cite{Kaartinen2005}]{};
+	    \path (manual_indx) + (0, -.5) node[cross, label=below:\cite{Zeng2014}]{};
+	    \path (manual_indx) + (-1, 1) node[cross, label=above:\cite{Voegtle2003}]{};
+	    \path (manual_indx) + (1.5, .5) node[cross, label=below:\cite{Kaartinen2005}]{};
 	    \path (sensor_indx) node[cross, label=below:\cite{Akca2010}]{};
 	    \path (sensor_semantic) + (0, 1.75) node[cross, label=below:\cite{OudeElberink2010}]{};
 	    \path (sensor_semantic) + (-.75, .25) node[cross, label=below:\cite{boudet2006supervised}]{};
 	    \path (sensor_semantic) + (1.5, -.75) node[cross, label=below:\cite{Michelin2013}]{};
 	\end{tikzpicture}
-	\ifstandalone
 	\bibliographystyle{apalike}
-	\bibliography{references}
-	\fi
+	\nobibliography{references}
 \end{document}

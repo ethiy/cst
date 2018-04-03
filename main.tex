@@ -22,7 +22,7 @@
 \usepackage{mathrsfs, amsmath}
 
 \usepackage{graphicx}
-\usepackage[font={small, color=IGNDarkGrey}, labelfont={bf, color=IGNGreen}]{caption}
+\usepackage[font={small, color=IGNDarkGrey}, labelformat=empty]{caption}
 \usepackage{subcaption}
 \DeclareCaptionFont{tiny}{\tiny}
 \captionsetup[subtable]{labelfont={tiny, bf},textfont=normalfont,justification=raggedright}
@@ -31,6 +31,20 @@
 
 \usepackage{hyperref}
 
+\usepackage[
+    mcite,
+    backend=bibtex,
+    style=verbose,
+    citestyle=authortitle,
+    bibstyle=numeric,
+    sorting=none,
+    autocite=footnote,
+    maxnames=10,
+    hyperref=true,
+    abbreviate=true
+]{biblatex}
+\bibliography{references}
+\renewcommand{\footnotetext}{\scriptsize}
 
 \usetheme{ign}
 
@@ -40,7 +54,7 @@
 \newacronym{dsm}{DSM}{Digital Surface Model}
 \newacronym{gui}{GUI}{Graphical User Interface}
 
-\title{Semantic $3D$ building model diagnostic}
+\title{Semantic $3D$ building model qualification}
 \subtitle{}
 \institute[LaSTIG MATIS]{Univ. Paris Est, LaSTIG MATIS, IGN, ENSG}
 \date{\today}
@@ -63,7 +77,7 @@
                     \begin{figure}[H]
                         \begin{center}
                             \includegraphics[height=.2\textheight]{images/citygml_lod}
-                            \caption{\label{fig::lods_citygml} \gls{lod}~\cite{kolbe2005citygml} representation as defined in the \emph{cityGML} format~\cite{ohori2016higher}.}
+                            \caption{\label{fig::lods_citygml} \gls{lod}~\footcite{kolbe2005citygml} representation as defined in the \emph{cityGML} format.}
                         \end{center}
                     \end{figure}
                 }
@@ -86,29 +100,35 @@
 
             \begin{frame}{Urban models applications}
                 \begin{itemize}[label=$\blacktriangleright$, font=\color{IGNGreen}]
-                    \item Urban models have a wide application range~\cite{Biljecki2015} (\textit{c.f.} Table~\ref{tab::3d_applications});
+                    \item<1-> Urban models have a wide application range~\footcite{Biljecki2015};
                 \end{itemize}
-                \begin{table}
-                    \begin{center}
-                        \begin{tabular}{l l l}
-                            \toprule
-                            Planning & Simulation & Visualization \\
-                            \midrule
-                            City planning & Micro climates & Architecture \\
-                            Emergency intervention & Wave propagation & Cadastre \\
-                            Home decoration & Run-off water & Tourism \\
-                            Communication network & Military intervention & Video games \\
-                            \bottomrule
-                        \end{tabular}
-                        \caption{\label{tab::3d_applications} Some of the main thematic applications of $3D$ urban models~\cite{Biljecki2015, Scholze2002}.}
-                    \end{center}
-                \end{table}
+                \uncover<2->{
+                    \begin{table}
+                        \begin{center}
+                            \begin{tabular}{l l l}
+                                \toprule
+                                Planning & Simulation & Visualization \\
+                                \midrule
+                                City planning & Micro climates & Architecture \\
+                                Emergency intervention & Wave propagation & Cadastre \\
+                                Home decoration & Run-off water & Tourism \\
+                                Communication network & Military intervention & Video games \\
+                                \bottomrule
+                            \end{tabular}
+                            \caption{\label{tab::3d_applications} Some of the main thematic applications of $3D$ urban models.}
+                        \end{center}
+                    \end{table}
+                }
             \end{frame}
         \subsection{Motivation}
             \begin{frame}{The need for self diagnostic}
                 \begin{itemize}[label=$\blacktriangleright$, font=\color{IGNGreen}]
-                    \item<1-> Automatic urban modeling is an active research area~\cite{Musialski2012}, but not \textcolor{IGNRed}{yet operational}~\cite{rottensteiner2014results};
-                    \item<2-> Urban $3D$ model semantic diagnostic is not well studied~\cite{nguatem2017modeling}.
+                    \item<1-> Automatic urban modeling is an active research area~\footcite{Musialski2012}, but not \textcolor{IGNRed}{yet operational}~\footcite{rottensteiner2014results}:
+                    \begin{itemize}[label=--]
+                        \item reconstruction methods lack generality and compacity;
+                        \item too many modelling errors require labourious manual corrections.
+                    \end{itemize}
+                    \item<2-> Urban $3D$ model semantic diagnostic is not well studied~\footcite{nguatem2017modeling}.
                 \end{itemize}
                 ~\\
                 \uncover<3->{
@@ -143,10 +163,10 @@
         \end{frame}
         \subsection{Different types of reference data}
             \begin{frame}{Manual reference data}
-                Compare reconstructed $3D$ models with ground truth reference data with higher precision, using:
+                Compare reconstructed $3D$ models with ground truth reference data with higher spatial accuracy, using:
                 \begin{itemize}[label=$\blacktriangleright$, font=\color{IGNGreen}]
-                    \item<1-> geodetic measurements ($ \sigma \sim \SI{0.05}{m}$)~\cite{Kaartinen2005, Voegtle2003};
-                    \item<2-> stereo plotting~\cite{Kaartinen2005, Zeng2014}.
+                    \item<1-> geodetic measurements ($ \sigma \sim \SI{0.05}{m}$)~\footcite{Voegtle2003};
+                    \item<2-> stereo plotting~\footcite{Zeng2014}.
                 \end{itemize}
                 \uncover<3->{
                     Disadvantages:
@@ -159,8 +179,8 @@
             \begin{frame}{Sensor data}
                 Compare reconstructed $3D$ models with low semantic level sensor data, using:
                 \begin{itemize}[label=$\blacktriangleright$, font=\color{IGNGreen}]
-                    \item<1-> \gls{lidar}~\cite{Akca2010};
-                    \item<2-> oriented aerial images~\cite{boudet2006supervised,Michelin2013}.
+                    \item<1-> \gls{lidar}~\footcite{Akca2010};
+                    \item<2-> oriented aerial images~\footcite{Michelin2013}.
                 \end{itemize}
                 \uncover<3->{
                     Disadvantages:
@@ -174,15 +194,15 @@
                 Compute precision ratios from the $3D$ model which describes its quality.\\
                 At different scales:
                 \begin{itemize}[label=$\blacktriangleright$, font=\color{IGNGreen}]
-                    \item<1-> Points of interest average precision~\cite{Zeng2014, Voegtle2003},
-                    \item<2-> Surface discrepency to reference data~\cite{Zeng2014, Henricsson1997},
-                    \item<3-> Volume discrepency to reference data~\cite{Zeng2014}.
+                    \item<1-> Points of interest average precision~\footcite{Voegtle2003},
+                    \item<2-> Surface discrepency to reference data~\footcite{Henricsson1997},
+                    \item<3-> Volume discrepency to reference data~\footcite{Zeng2014}.
                 \end{itemize}
                 \uncover<4->{
                     Disadvantages:
                     \begin{itemize}[label=$-$, font=\color{IGNRed}]
                         \item<5-> too general;
-                        \item<6-> no semantics; thus no hierarchy~\cite{rottensteiner2014results}.
+                        \item<6-> no semantics; thus no hierarchy.
                     \end{itemize}
                 }
             \end{frame}
@@ -190,11 +210,11 @@
             \begin{frame}{Semantic errors}
                 Identify the topologic and geometric errors that affects $3D$ models, using:
                 \begin{itemize}[label=$\blacktriangleright$, font=\color{IGNGreen}]
-                    \item<1-> visual inspection~\cite{OudeElberink2010};
+                    \item<1-> visual inspection~\footcite{OudeElberink2010};
                     \item<2-> supervized learning, detecting errors from a taxonomy based on:
                     \begin{itemize}[label=--]
-                        \item<3-> traffic lights paradigm~\cite{boudet2006supervised};
-                        \item<4-> a list of reconstruction errors~\cite{Michelin2013}.
+                        \item<3-> traffic lights paradigm~\footcite{boudet2006supervised};
+                        \item<4-> a list of reconstruction errors~\footcite{Michelin2013}.
                     \end{itemize}
                 \end{itemize}
                 \uncover<5->{
@@ -207,9 +227,12 @@
         \subsection{Summary}
             \begin{frame}[plain]{Summary}
                 \begin{figure}
-                    \includestandalone[mode=buildnew, width=\textwidth]{state_of_the_art}
+                    \includegraphics[width=\textwidth]{state_of_the_art}
                     \caption{\label{fig::bib_summary} State of the art summary.}
                 \end{figure}
+            \end{frame}
+            \begin{frame}{}
+
             \end{frame}
     \section{Methodology}
         \begin{frame}{How to predict reconstruction errors?}
@@ -219,7 +242,7 @@
                 \item<3-> modular: can use multiple entries:
                 \begin{itemize}[label=--]
                     \item<4-> the model itself;
-                    \item<5-> the corresponding \gls{dsm};
+                    \item<5-> the corresponding \gls{dsm} (photo point cloud);
                     \item<6-> the corresponding orthoimage.
                 \end{itemize}
                 \item<7-> lightweight: does not involve heavy reference data.
@@ -241,7 +264,7 @@
                         \item<2-> a $2D$ $z$ profile;
                     \end{itemize}
                     \item<3-> The second step extracts features from each representation of the model, with \href{https://github.com/ethiy/qualcity}{\textcolor{IGNGreen}{qualcity}}.
-                    \item<4-> Using a supervised classifer, trained with the defined taxonomy and parameters, we \textcolor{IGNDarkOrange}{predict} the $3D$ model quality.
+                    \item<4-> Using a supervised classifer, trained with the defined taxonomy and parameters, we \textcolor{IGNDarkOrange}{predict} the building $3D$ model quality.
                 \end{itemize}
             \end{frame}
         \subsection{Used Tools}
@@ -505,7 +528,7 @@
                     \item[Area:]<2-> \SI{0.2}{\km \squared};
                     \item[Buildings:]<3-> $502$;
                     \item[Type:]<4-> mostly residential district with a school and one gas station;
-                    \item[Algorithm:]<5-> $\text{Bati3D}^\text{\textregistered}$~\cite{Durupt2006}.
+                    \item[Algorithm:]<5-> $\text{Bati3D}^\text{\textregistered}$~\footcite{Durupt2006}.
                 \end{itemize}
             \end{frame}
             \begin{frame}{Ground truth statistics}
@@ -620,8 +643,8 @@
             \begin{frame}{More scenes}
                 \begin{itemize}[label=$\blacktriangleright$, font=\color{IGNGreen}]
                     \item<1-> We need to procure more reconstructed scenes using $\text{Bati3D}^\text{\textregistered}$.
-                    \item<2-> A group of students (ENSG) reconstructed Elancourt and Toulouse using the \emph{3dfier} program~\cite{ledoux2011topologically}: $\gls{lod} = 1$;
-                    \item<3-> We can compare with other reconstruction methods~\cite{Lafarge2012,kelly2017bigsur}.
+                    \item<2-> A group of students (ENSG) reconstructed Elancourt and Toulouse using the \emph{3dfier} program~\footcite{ledoux2011topologically}: $\gls{lod} = 1$;
+                    \item<3-> We can compare with other reconstruction methods~\footcite{Lafarge2012,kelly2017bigsur}.
                 \end{itemize}
             \end{frame}
         \subsection{Unsupervized learning}
@@ -658,10 +681,5 @@
                 \item We propose a flexible and modular classification pipeline using supervised learning;
                 \item We established a baseline for geometric, radiometric and altimetric features.
             \end{itemize}
-        \end{frame}
-    \section*{References}
-        \begin{frame}[allowframebreaks]{References}
-            \bibliographystyle{alpha}
-            \bibliography{references.bib}
         \end{frame}
 \end{document}
