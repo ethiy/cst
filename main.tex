@@ -11,6 +11,10 @@
 
 \usepackage{xcolor}
 
+\usepackage{multirow}
+
+\usepackage{array}
+\newcolumntype{x}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}p{#1}}
 \usepackage{booktabs}
 
 \usepackage{siunitx}
@@ -232,6 +236,25 @@
                     \item<4-> Using a supervised classifer, trained with the defined taxonomy and parameters, we \textcolor{IGNDarkOrange}{predict} the $3D$ model quality.
                 \end{itemize}
             \end{frame}
+        \subsection{Used Tools}
+            \begin{frame}{\href{https://github.com/ethiy/proj.city}{proj.city}}
+                This program was developped to:
+                \begin{itemize}[label=$\blacktriangleright$, font=\color{IGNGreen}]
+                    \item<1-> extracts models from urban scenes (\emph{3DS}, \emph{Obj}) at the building level;
+                    \item<2-> computes the facet adjacency graph and some basic features (normal, area, centroid, degree, perimeter);
+                    \item<3-> computes building model projection to $(O, \vec{i}, \vec{j})$ and store the result to a vector format (\emph{ESRI Shapefile}, \emph{GML}, \dots);
+                    \item<4-> computes the model $z$ profile from the previous projection using the facets plane equations and save the result to a \emph{GeoTIFF}.
+                \end{itemize}
+            \end{frame}
+            \begin{frame}{\href{https://github.com/ethiy/qualcity}{qualcity}}
+                This program:
+                \begin{itemize}[label=$\blacktriangleright$, font=\color{IGNGreen}]
+                    \item<1-> reads and computes features from the previously saved representations;
+                    \item<2-> retreives models labels;
+                    \item<3-> infers the classification problem from the taxonomy parameters;
+                    \item<3-> trains and tests the chosen classifier model.
+                \end{itemize}
+            \end{frame}
         \subsection{Error Taxonomy}
             \begin{frame}{Bidimensional taxonomy}
                 In order to establish our taxonomy, two criterea are taken into account:
@@ -301,25 +324,6 @@
                     \item<1-> \emph{finesse}: the semantic level desired;
                     \item<2-> $\gls{lod}$: the diagnostic level of details. Default $ = \gls{lod}(input) $;
                     \item<3-> \emph{exclusivity}: report only the lowest \gls{lod} errors (\emph{exclusive}) or all errors (\emph{non exclusive}).
-                \end{itemize}
-            \end{frame}
-        \subsection{Used Tools}
-            \begin{frame}{\href{https://github.com/ethiy/proj.city}{proj.city}}
-                This program was developped to:
-                \begin{itemize}[label=$\blacktriangleright$, font=\color{IGNGreen}]
-                    \item<1-> extracts models from urban scenes (\emph{3DS}, \emph{Obj}) at the building level;
-                    \item<2-> computes the facet adjacency graph and some basic features (normal, area, centroid, degree, perimeter);
-                    \item<3-> computes building model projection to $(O, \vec{i}, \vec{j})$ and store the result to a vector format (\emph{ESRI Shapefile}, \emph{GML}, \dots);
-                    \item<4-> computes the model $z$ profile from the previous projection using the facets plane equations and save the result to a \emph{GeoTIFF}.
-                \end{itemize}
-            \end{frame}
-            \begin{frame}{\href{https://github.com/ethiy/qualcity}{qualcity}}
-                This program:
-                \begin{itemize}[label=$\blacktriangleright$, font=\color{IGNGreen}]
-                    \item<1-> reads and computes features from the previously saved representations;
-                    \item<2-> retreives models labels;
-                    \item<3-> infers the classification problem from the taxonomy parameters;
-                    \item<3-> trains and tests the chosen classifier model.
                 \end{itemize}
             \end{frame}
     \section{Classification}
@@ -408,7 +412,74 @@
                 \end{itemize}
             \end{frame}
         \subsection{Classifiers}
+            \begin{frame}{Random Forest}
+                Any supervized classifier can be used in our problem. We opted for a Random Forest classifier, because:
+                \begin{itemize}[label=$\blacktriangleright$, font=\color{IGNGreen}]
+                    \item<1-> it handles well multimodal features;
+                    \item<2-> being based on a boosting method, it is build to avoid overfitting.
+                \end{itemize}
+                \uncover<3->{
+                    We choose:
+                    \begin{itemize}[label=$\blacktriangleright$, font=\color{IGNGreen}]
+                        \item<4-> $4$ maximum depth to avoid overfitting the trees;
+                        \item<5-> $800$ trees to cover the whole the attributes space.
+                    \end{itemize}
+                }
+            \end{frame}
+            \begin{frame}{Multi-Class, Multi-Label or Multi-Stage}
+                \begin{itemize}[label=$\blacktriangleright$, font=\color{IGNGreen}]
+                    \item<1-> Depending on the \emph{finesse} and the \emph{exclusivity} parameters, we get:
+                    \begin{itemize}[label=--]
+                        \item<2-> \textbf{Multi-Class}: one label to predict, multiple cases to predict;
+                        \item<3-> \textbf{Multi-Label}: multiple labels to predict, each has multiple cases (in our case, \textbf{binary});
+                        \item<3-> \textbf{Multi-Stage} or Hierchical: one \textbf{Multi-Class} stage to predict the \emph{error family} and then a \textbf{Multi-Label} one to detect the corresponding \emph{atomic} errors.
+                    \end{itemize}
+                    \item<4-> We adapt any \textbf{Multi-Class} or \textbf{binary} classifier to be the \textbf{Multi-Label} setting using a \emph{OnevsAll} strategy.
+                \end{itemize}
+            \end{frame}
         \subsection{Results}
+            \begin{frame}{Used Data}
+                \begin{itemize}[leftmargin=6em, font=\color{IGNDarkGreen}]
+                    \item[Town:]<1-> Elancourt (Yvelines, France);
+                    \item[Area:]<2-> \SI{0.2}{\km \squared};
+                    \item[Buildings:]<3-> $502$;
+                    \item[Type:]<4-> mostly residential district with a school and one gas station;
+                    \item[Algorithm:]<5-> $\text{Bati3D}^\text{\textregistered}$~\cite{Durupt2006}.
+                \end{itemize}
+            \end{frame}
+            \begin{frame}{Ground truth statistics}
+                \begin{table}
+                    \tiny
+                    \begin{center}
+                        \begin{tabular}{|x{2cm} | x{1.2cm} | x{2cm} | x{1.5cm} | x{1.5cm}|}
+                            \hline
+                            \multicolumn{1}{|c|}{\textbf{Error Class}} & \textbf{Occurence ratio} & \textbf{\emph{Atomic} error} & \textbf{Family conditionnal occurence ratio} & \textbf{Absolute occurence ratio} \\
+                            \hline
+                            Unqualifiable & $0.0876$ & -- & -- & -- \\
+                            \hline
+                            \hline
+                            \multirow{4}{*}{Building Errors} & \multirow{4}{*}{$0.2408$} & Over segmentation & $0.1365$ & $0.0328$\\
+                            \cline{3-5}
+                                &                   & Under segmentation & $0.4177$ & $0.1006$ \\
+                            \cline{3-5}
+                                &                   & Imprecise footprint & $0.4839$ & $0.1165$ \\
+                            \cline{3-5}
+                                &                   & Imprecise height & $0.0165$ & $0.0040$ \\
+                            \hline
+                            \hline
+                            \multirow{4}{*}{Facet Errors} & \multirow{4}{*}{$0.81657$} & Over segmentation & $0.8830$ & $0.7203$ \\
+                            \cline{3-5}
+                                &                   & Under segmentation & $0.0842$ & $0.0687$ \\
+                            \cline{3-5}
+                                &                   & Imprecise segmentation & $0.0806$ & $0.0657$ \\
+                            \cline{3-5}
+                                &                   & Imprecise slope & $0.0327$ & $0.0267$ \\
+                            \hline
+                        \end{tabular}
+                        \caption{\label{tab::label_stats} Label statistics over the dataset.}
+                    \end{center}
+                \end{table}
+            \end{frame}
     \section{Perspectives}
         \subsection{Data augmentation}
         \subsection{Unsupervized learning}
