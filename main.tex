@@ -12,6 +12,7 @@
 \usepackage{xcolor}
 
 \usepackage{multirow}
+\usepackage{multicol}
 
 \usepackage{array}
 \newcolumntype{x}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}p{#1}}
@@ -20,10 +21,12 @@
 \usepackage{siunitx}
 \usepackage{mathrsfs, amsmath}
 
+\usepackage{graphicx}
 \usepackage[font={small, color=IGNDarkGrey}, labelfont={bf, color=IGNGreen}]{caption}
 \usepackage{subcaption}
 \DeclareCaptionFont{tiny}{\tiny}
 \captionsetup[subtable]{labelfont={tiny, bf},textfont=normalfont,justification=raggedright}
+\captionsetup[subfigure]{labelfont={tiny, bf},textfont=tiny,justification=raggedright}
 
 
 \usepackage{hyperref}
@@ -306,6 +309,58 @@
                     \end{itemize}
                 }
             \end{itemize}
+            \end{frame}
+            \begin{frame}{Building errors}
+                \begin{figure}
+                    \begin{center}
+                        \begin{subfigure}{.28\textwidth}
+                            \fbox{\includegraphics[width=\textwidth]{images/errors/building/under_segmentation}}
+                            \caption{\label{fig::bul_under} Building under segmentation}
+                        \end{subfigure}
+                        \hspace{10pt}
+                        \begin{subfigure}{.28\textwidth}
+                            \fbox{\includegraphics[width=\textwidth]{images/errors/building/over_segmentation}}
+                            \caption{\label{fig::bul_over} Building over segmentation}
+                        \end{subfigure}
+                        \hspace{10pt}
+                        \begin{subfigure}{.28\textwidth}
+                            \fbox{\includegraphics[width=\textwidth]{images/errors/building/footprint}}
+                            \caption{\label{fig::bul_footprint} Imprecise footprint}
+                        \end{subfigure}
+                        \hspace{10pt}
+                        \begin{subfigure}{.28\textwidth}
+                            \fbox{\includegraphics[width=\textwidth]{images/errors/building/altimetric}}
+                            \caption{\label{fig::bul_height} Imprecise height}
+                        \end{subfigure}
+                        \caption{Building \emph{atomic} errors illustration.}
+                    \end{center}
+                \end{figure}
+            \end{frame}
+            \begin{frame}{Facet errors}
+                \begin{figure}
+                    \begin{center}
+                        \begin{subfigure}{.28\textwidth}
+                            \fbox{\includegraphics[width=\textwidth]{images/errors/facet/under_segmentation}}
+                            \caption{\label{fig::fac_under} Facet under segmentation}
+                        \end{subfigure}
+                        \hspace{10pt}
+                        \begin{subfigure}{.28\textwidth}
+                            \fbox{\includegraphics[width=\textwidth]{images/errors/facet/over_segmentation}}
+                            \caption{\label{fig::fac_over} Facet over segmentation}
+                        \end{subfigure}
+                        \hspace{10pt}
+                        \begin{subfigure}{.28\textwidth}
+                            \fbox{\includegraphics[width=\textwidth]{images/errors/facet/mis_segmentation}}
+                            \caption{\label{fig::fac_footprint} Facet imprecise segmentation}
+                        \end{subfigure}
+                        \hspace{10pt}
+                        \begin{subfigure}{.28\textwidth}
+                            \fbox{\includegraphics[width=\textwidth]{images/errors/facet/slope}}
+                            \caption{\label{fig::fac_height} Imprecise height}
+                        \end{subfigure}
+                        \caption{Facet \emph{atomic} errors illustration.}
+                    \end{center}
+                \end{figure}
             \end{frame}
             \begin{frame}{Taxonomy scores}
                 \begin{itemize}[label=$\blacktriangleright$, font=\color{IGNGreen}]
