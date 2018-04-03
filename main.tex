@@ -13,7 +13,12 @@
 
 \usepackage{booktabs}
 
+\usepackage{siunitx}
+\usepackage{mathrsfs, amsmath}
+
 \usepackage[font={small, color=IGNDarkGrey}, labelfont={bf, color=IGNGreen}]{caption}
+
+\usepackage{hyperref}
 
 
 \usetheme{ign}
@@ -93,11 +98,11 @@
                     \item<1-> Automatic urban modeling is an active research area~\cite{Musialski2012}, but not \textcolor{IGNRed}{yet operational}~\cite{rottensteiner2014results};
                     \item<2-> Urban $3D$ model semantic diagnostic is not well studied~\cite{nguatem2017modeling}.
                 \end{itemize}
-~\\
+                ~\\
                 \uncover<3->{
-                	\begin{itemize}[label=Goal $\longrightarrow$, font=\color{purple}, leftmargin=2cm]
-                		\item Detect and describe semantic errors that affects building $3D$ models.
-                	\end{itemize}
+                    \begin{itemize}[label=Goal $\longrightarrow$, font=\color{purple}, leftmargin=2cm]
+                        \item Detect and describe semantic errors that affects building $3D$ models.
+                    \end{itemize}
                 }
             \end{frame}
 
@@ -114,55 +119,300 @@
             \begin{itemize}[label=$\blacktriangleright$, font=\color{IGNGreen}]
                 \item Based on the output:
                 \begin{itemize}[label=--]
-                    \item Geometric precision indices (distance error measurements, completness ratios \dots);
-                    \item Semantic errors: categorized topologic and geometric errors.
+                    \item Geometric precision indices;
+                    \item Semantic errors.
                 \end{itemize}
                 \item Based on the reference data:
                 \begin{itemize}[label=--]
-                    \item Manually obtained data: manually constructed $3D$ models (through geodetic mesurements, photo interpretation);
-                    \item Sensor data: low semantic level data (\gls{dsm}, orthoimages \dots).
+                    \item Manually obtained data;
+                    \item Sensor data.
                 \end{itemize}
             \end{itemize}
         \end{frame}
-        \subsection{Different types of output}
-            \begin{frame}{Geometric precision indices}
-            	Compute precision ratios from the $3D$ model which describes its quality.\\
-            	At different scales:
-				\begin{itemize}[label=$\blacktriangleright$, font=\color{IGNGreen}]
-					\item<1-> Points of interest average precision~\cite{Zeng2014, Voegtle2003},
-					\item<2-> Surface discrepency to reference data~\cite{Zeng2014, Henricsson1997},
-					\item<3-> Volume discrepency to reference data~\cite{Zeng2014}.
-				\end{itemize}
-			\uncover<4->{
-				Disadvantages:
-				\begin{itemize}[label=$-$, font=\color{IGNRed}]
-					\item<5-> Too general,
-					\item<6-> No semantics; thus no hierarchy.
-				\end{itemize}
-			}
-            \end{frame}
-
-            \begin{frame}{Semantic errors}
-				Identify the topologic or geometric errors that affects 
-            \end{frame}
         \subsection{Different types of reference data}
             \begin{frame}{Manual reference data}
-
+                Compare reconstructed $3D$ models with ground truth reference data with higher precision, using:
+                \begin{itemize}[label=$\blacktriangleright$, font=\color{IGNGreen}]
+                    \item<1-> geodetic measurements ($ \sigma \sim \SI{0.05}{m}$)~\cite{Kaartinen2005, Voegtle2003};
+                    \item<2-> stereo plotting~\cite{Kaartinen2005, Zeng2014}.
+                \end{itemize}
+                \uncover<3->{
+                    Disadvantages:
+                    \begin{itemize}[label=$-$, font=\color{IGNRed}]
+                        \item<4-> too tedious to get.
+                    \end{itemize}
+                }
             \end{frame}
 
             \begin{frame}{Sensor data}
+                Compare reconstructed $3D$ models with low semantic level sensor data, using:
+                \begin{itemize}[label=$\blacktriangleright$, font=\color{IGNGreen}]
+                    \item<1-> \gls{lidar}~\cite{Akca2010};
+                    \item<2-> oriented aerial images~\cite{boudet2006supervised,Michelin2013}.
+                \end{itemize}
+                \uncover<3->{
+                    Disadvantages:
+                    \begin{itemize}[label=$-$, font=\color{IGNRed}]
+                        \item<4-> no semantics.
+                    \end{itemize}
+                }
+            \end{frame}
+        \subsection{Different types of output}
+            \begin{frame}{Geometric precision indices}
+                Compute precision ratios from the $3D$ model which describes its quality.\\
+                At different scales:
+                \begin{itemize}[label=$\blacktriangleright$, font=\color{IGNGreen}]
+                    \item<1-> Points of interest average precision~\cite{Zeng2014, Voegtle2003},
+                    \item<2-> Surface discrepency to reference data~\cite{Zeng2014, Henricsson1997},
+                    \item<3-> Volume discrepency to reference data~\cite{Zeng2014}.
+                \end{itemize}
+                \uncover<4->{
+                    Disadvantages:
+                    \begin{itemize}[label=$-$, font=\color{IGNRed}]
+                        \item<5-> too general;
+                        \item<6-> no semantics; thus no hierarchy~\cite{rottensteiner2014results}.
+                    \end{itemize}
+                }
+            \end{frame}
 
+            \begin{frame}{Semantic errors}
+                Identify the topologic and geometric errors that affects $3D$ models, using:
+                \begin{itemize}[label=$\blacktriangleright$, font=\color{IGNGreen}]
+                    \item<1-> visual inspection~\cite{OudeElberink2010};
+                    \item<2-> supervized learning, detecting errors from a taxonomy based on:
+                    \begin{itemize}[label=--]
+                        \item<3-> traffic lights paradigm~\cite{boudet2006supervised};
+                        \item<4-> a list of reconstruction errors~\cite{Michelin2013}.
+                    \end{itemize}
+                \end{itemize}
+                \uncover<5->{
+                    Risk:
+                    \begin{itemize}[label=$-$, font=\color{IGNRed}]
+                        \item<6-> overfitting to a scene or reconstruction method.
+                    \end{itemize}
+                }
             \end{frame}
         \subsection{Summary}
-        	\begin{frame}[plain]{Summary}
-        		\begin{figure}
-        			\includestandalone[mode=buildnew, width=\textwidth]{state_of_the_art}
-        			\caption{\label{fig::bib_summary} State of the art summary.}
-        		\end{figure}
-        	\end{frame}
-    \section{Error taxonomy}
+            \begin{frame}[plain]{Summary}
+                \begin{figure}
+                    \includestandalone[mode=buildnew, width=\textwidth]{state_of_the_art}
+                    \caption{\label{fig::bib_summary} State of the art summary.}
+                \end{figure}
+            \end{frame}
     \section{Methodology}
-    \section{Used Tools}
+        \begin{frame}{How to predict reconstruction errors?}
+            The problem is modeled as a supervised learning one based on an established taxonomy:
+            \begin{enumerate}[label = (\roman*)., font=\color{IGNGreen}]
+                \item<2-> fast: does not involve heavy computing at runtime;
+                \item<3-> modular: can use multiple entries:
+                \begin{itemize}[label=--]
+                    \item<4-> the model itself;
+                    \item<5-> the corresponding \gls{dsm};
+                    \item<6-> the corresponding orthoimage.
+                \end{itemize}
+                \item<7-> lightweight: does not involve heavy reference data.
+            \end{enumerate}
+        \end{frame}
+        \subsection{Pipeline}
+            \begin{frame}{The Qualification pipeline}
+                \begin{figure}
+                    \includestandalone[mode=buildnew, width=\textwidth]{pipeline}
+                    \caption{\label{fig::pipeline} Pipeline describing the qualification process.}
+                \end{figure}
+            \end{frame}
+            \begin{frame}{The Qualification pipeline}
+                \begin{itemize}[label=$\blacktriangleright$, font=\color{IGNGreen}]
+                    \item<1-> Using \href{https://github.com/ethiy/proj.city}{\textcolor{IGNGreen}{proj.city}}, the first step extracts:
+                    \begin{itemize}[label=--]
+                        \item<2-> a facet graph from the model;
+                        \item<2-> a $2D$ vector projection;
+                        \item<2-> a $2D$ $z$ profile;
+                    \end{itemize}
+                    \item<3-> The second step extracts features from each representation of the model, with \href{https://github.com/ethiy/qualcity}{\textcolor{IGNGreen}{qualcity}}.
+                    \item<4-> Using a supervised classifer, trained with the defined taxonomy and parameters, we \textcolor{IGNDarkOrange}{predict} the $3D$ model quality.
+                \end{itemize}
+            \end{frame}
+        \subsection{Error Taxonomy}
+            \begin{frame}{Bidimensional taxonomy}
+                In order to establish our taxonomy, two criterea are taken into account:
+                \begin{itemize}[label=$\blacktriangleright$, font=\color{IGNGreen}]
+                    \item<1-> the \acrfull{lod};
+                    \item<2-> the \emph{finesse}: the semantization level.
+                    \begin{itemize}
+                        \item<3-> an error is of maximal \emph{finesse} $\Rightarrow$ corresponds to a unit (semantically) action required for the operator to correct the model: $\equiv$ \emph{atomic} error.
+                    \end{itemize}
+                \end{itemize}
+            \end{frame}
+            \begin{frame}{Taxonomy \emph{finesse}}
+                \begin{enumerate}[label = (\roman*)., font=\color{IGNGreen}]
+                    \item<1-> \emph{finesse} $0$ $\longrightarrow$ \textbf{Unqualifiable} / \textbf{Qualifiable};
+                    \item<2-> \emph{finesse} $1$ $\longrightarrow$ \textbf{Valid} / \textbf{Erroneous};
+                    \item<3-> \emph{finesse} $2$:
+                    \begin{itemize}[leftmargin=12em, font=\color{IGNDarkOrange}]
+                        \item[$\gls{lod}0 \cup \gls{lod}1 \longrightarrow$] \textbf{Building Errors}
+                        \item[$\gls{lod}2 \longrightarrow$] \textbf{Facet Errors}
+                        \item[$\gls{lod}3 \longrightarrow$] \textbf{Superstructure Errors}
+                    \end{itemize}
+                    \item<4-> \emph{finesse} $3$ $\longrightarrow$ \emph{atomic} errors.
+                \end{enumerate}
+            \end{frame}
+            \begin{frame}{\emph{Atomic} errors example}
+                For a \gls{lod} $ = 2$ we propose:
+                \begin{itemize}[label=$\blacktriangleright$, font=\color{IGNGreen}]
+                \only<1-5>{
+                    \item<1-> \textbf{Building Errors}:
+                    \begin{itemize}[leftmargin=10em, font=\color{IGNDarkGreen}]
+                        \item[Under segmentation:]<2-> two or more building reconstructed as one;
+                        \item[Over segmentation:]<3-> one building subdivided into two or more buildings;
+                        \item[Imprecise footprint:]<4-> inexact building footprint;
+                        \item[Imprecise height:]<5-> inexact building height;
+                    \end{itemize}
+                }
+                \only<6-10>{
+                    \item<6-> \textbf{Facet Errors}:
+                    \begin{itemize}[leftmargin=10em, font=\color{IGNDarkGreen}]
+                        \item[Under segmentation:]<7-> two or more facets reconstructed as one;
+                        \item[Over segmentation:]<8-> one facet subdivided into two or more facets;
+                        \item[Imprecise Segmentation:]<9-> inexact edge betweeen facets;
+                        \item[Imprecise slope:]<10-> inexact facet slope.
+                    \end{itemize}
+                }
+            \end{itemize}
+            \end{frame}
+            \begin{frame}{Taxonomy scores}
+                \begin{itemize}[label=$\blacktriangleright$, font=\color{IGNGreen}]
+                    \item<1-> Each \emph{atomic} error has a score assigned to it.
+                    \item<2-> The scores are from \numrange{0}{10} $\Rightarrow$ discretisation of the probability or the error occurence.
+                    \item<3-> A parent error inherits the score from its child errors:
+                    \begin{equation*}
+                        score(p) \triangleq \max_{c \in children(p)} score(c)
+                    \end{equation*}
+                \end{itemize}
+            \end{frame}
+            \begin{frame}{Taxonomy mindmap}
+                \begin{figure}
+                    \includestandalone[mode=buildnew, width=\textwidth]{mind_map}
+                    \caption{\label{fig::mindmap} Mindmap summarizing the error taxonomy.}
+                \end{figure}
+            \end{frame}
+            \begin{frame}{Qualification using error taxonomy}
+                The qualification has $3$ parameters:
+                \begin{itemize}[label=$\blacktriangleright$, font=\color{IGNGreen}]
+                    \item<1-> \emph{finesse}: the semantic level desired;
+                    \item<2-> $\gls{lod}$: the diagnostic level of details. Default $ = \gls{lod}(input) $;
+                    \item<3-> \emph{exclusivity}: report only the lowest \gls{lod} errors (\emph{exclusive}) or all errors (\emph{non exclusive}).
+                \end{itemize}
+            \end{frame}
+        \subsection{Used Tools}
+            \begin{frame}{\href{https://github.com/ethiy/proj.city}{proj.city}}
+                This program was developped to:
+                \begin{itemize}[label=$\blacktriangleright$, font=\color{IGNGreen}]
+                    \item<1-> extracts models from urban scenes (\emph{3DS}, \emph{Obj}) at the building level;
+                    \item<2-> computes the facet adjacency graph and some basic features (normal, area, centroid, degree, perimeter);
+                    \item<3-> computes building model projection to $(O, \vec{i}, \vec{j})$ and store the result to a vector format (\emph{ESRI Shapefile}, \emph{GML}, \dots);
+                    \item<4-> computes the model $z$ profile from the previous projection using the facets plane equations and save the result to a \emph{GeoTIFF}.
+                \end{itemize}
+            \end{frame}
+            \begin{frame}{\href{https://github.com/ethiy/qualcity}{qualcity}}
+                This program:
+                \begin{itemize}[label=$\blacktriangleright$, font=\color{IGNGreen}]
+                    \item<1-> reads and computes features from the previously saved representations;
+                    \item<2-> retreives models labels;
+                    \item<3-> infers the classification problem from the taxonomy parameters;
+                    \item<3-> trains and tests the chosen classifier model.
+                \end{itemize}
+            \end{frame}
+    \section{Classification}
+        \subsection{Descriptors}
+            \begin{frame}{Descriptor types}
+                We define a baseline for:
+                \begin{enumerate}[label = (\roman*)., font=\color{black}]
+                    \item<1-> Basic intrinsic descriptor:
+                    \begin{itemize}[label=$\blacktriangleright$, font=\color{IGNGreen}]
+                        \item<2-> \textbf{Geometric} features based on the graph $\mathscr{G}=(facets, E)$;
+                    \end{itemize}
+                    \item<3-> Optional descriptors:
+                    \begin{itemize}[label=$\blacktriangleright$, font=\color{blue}]
+                        \item<4-> \textbf{Altimetric} features;
+                        \item<5-> \textbf{Radiometric} features;
+                    \end{itemize}
+                \end{enumerate}
+            \end{frame}
+            \begin{frame}{Geometric features}
+                \begin{equation}\label{eq::feature_vec}
+                    \text{features}(m) = \begin{bmatrix}
+                            S(\{\vert \{e: e \in f\} \vert : f \in facets(m)\})\\
+                            S(\{\mathscr{A}(f) : f \in facets(m)\})\\
+                            S(\{d(\mathscr{C}(f), \mathscr{C}(g)) : (f, g) \in facets(m)^2 \cap E(m)\})\\
+                            S(\{acos(\vec{n}(f) . \vec{n}(g)) : (f, g) \in facets(m)^2 \cap E(m)\})
+                    \end{bmatrix}
+                \end{equation}
+                \begin{itemize}
+                    \only<1>{
+                        \item where:
+                        \begin{equation*}
+                            S: x \mapsto \begin{bmatrix}
+                                \max x\\
+                                \min x\\
+                                \overline{x}\\
+                                median(x)
+                            \end{bmatrix}
+                        \end{equation*}
+                    }
+                    \only<2>{
+                        \item or:
+                        \begin{equation*}
+                            S_{params}: x \mapsto histogram(x, params)
+                        \end{equation*}
+                    }
+                \end{itemize}
+            \end{frame}
+            \begin{frame}{Altimetric features}
+                \begin{equation}\label{eq::feature_vec}
+                    \text{features}(m) = S_{params}(\gls{dsm} - z\ profile)
+                \end{equation}
+                \begin{itemize}[itemsep=5em]
+                    \item where:
+                    \begin{equation*}
+                        S_{params}: x \mapsto histogram(x, params)
+                    \end{equation*}
+                    \item There is no theoretic bounds over the altimetric difference.
+                    \begin{itemize}[font=\color{IGNDarkOrange}]
+                        \item[$\Rightarrow$] We compute the bounds over the whole dataset in order to compute the histogram bins.
+                    \end{itemize}
+                \end{itemize}
+            \end{frame}
+            \begin{frame}{Altimetric features}
+                \begin{figure}
+
+                    \caption{\label{fig::altimetric} Altimetric features illustration.}
+                \end{figure}
+            \end{frame}
+            \begin{frame}{Radiometric features}
+                \begin{figure}
+
+                    \caption{\label{fig::radiometric} Radiometric features illustration.}
+                \end{figure}
+            \end{frame}
+            \begin{frame}{Radiometric features}
+                \begin{itemize}[label=$\blacktriangleright$, font=\color{IGNGreen}]
+                    \item<1-> A histogram of gardient correlation is computed along each segment:
+                    \begin{multline}
+                        Corr_{params}(s) = hist \Bigg( \Big\{\frac{\nabla I(p) . \vec{n}(s)}{\vert\nabla I(p)\vert}: p \in I \text{ and } p \cap s \neq \emptyset \Big\}\\
+                        , params\Bigg)
+                    \end{multline}
+                    \item<2-> For each model $m$, we compute then:
+                    \begin{equation}
+                        Corr_{params}(m) = \mathscr{P}(m) . \sum_{Pol \in m} \mathscr{A}(Pol). \sum_{s \in Pol} \vert\vert s \vert\vert_2. Corr_{params}(s)
+                    \end{equation}
+                \end{itemize}
+            \end{frame}
+        \subsection{Classifiers}
+        \subsection{Results}
+    \section{Perspectives}
+        \subsection{Data augmentation}
+        \subsection{Unsupervized learning}
+        \subsection{Graph kernels \& Deep learning}
     \section{Conclusion}
 
     \section*{References}
