@@ -35,6 +35,7 @@
 \newacronym{lod}{LoD}{Level of Detail}
 \newacronym{lidar}{LiDAR}{Light Detection and Ranging}
 \newacronym{dsm}{DSM}{Digital Surface Model}
+\newacronym{gui}{GUI}{Graphical User Interface}
 
 \title{Semantic $3D$ building model diagnostic}
 \subtitle{}
@@ -420,7 +421,8 @@
                 Any supervized classifier can be used in our problem. We opted for a Random Forest classifier, because:
                 \begin{itemize}[label=$\blacktriangleright$, font=\color{IGNGreen}]
                     \item<1-> it handles well multimodal features;
-                    \item<2-> being based on a boosting method, it is build to avoid overfitting.
+                    \item<2-> being based on a boosting method, it is build to avoid overfitting;
+                    \item<3-> it is easy to infer feature importance from.
                 \end{itemize}
                 \uncover<3->{
                     We choose:
@@ -534,17 +536,74 @@
             \end{frame}
             \begin{frame}{Discussion}
                 \begin{itemize}[label=$\blacktriangleright$, font=\color{IGNGreen}]
-                    \item Unbalanced \textbf{Building Errors} ($24\%$ among the $502$ instances) $\Rightarrow$ small recall.
-                    \item Among the \textbf{Facet Errors}, all but \textbf{Facet Over segmentation} suffer from the unbalanced dataset (ratio $ < 7\%$) $\Rightarrow$ small recall and big overall accuracy.
-                    \item Geometric features alone can predict errors with the same order of accuracy.
+                    \item<1-> Unbalanced \textbf{Building Errors} ($24\%$ among the $502$ instances) $\Rightarrow$ small recall.
+                    \item<2-> Among the \textbf{Facet Errors}, all but \textbf{Facet Over segmentation} suffer from the unbalanced dataset (ratio $ < 7\%$) $\Rightarrow$ small recall and big overall accuracy.
+                    \item<3-> Geometric features alone can predict errors with a comparable order of accuracy.
                 \end{itemize}
             \end{frame}
     \section{Perspectives}
         \subsection{Data augmentation}
+            \begin{frame}{The need for more data}
+                We need more data:
+                \begin{itemize}[label=$\blacktriangleright$, font=\color{IGNGreen}]
+                    \item to have enough representative samples for each error for the learning step;
+                    \item to avoid overfitting to a specific urban scene or a specific reconstruction method.
+                \end{itemize}
+            \end{frame}
+            \begin{frame}{More annotations}
+                \begin{itemize}[label=$\blacktriangleright$, font=\color{IGNGreen}]
+                    \item<1-> One difficult aspect of the methodology is the annotation phase.
+                    \item<2-> A Master's (PPMD) student made a \emph{QT5} \acrshort{gui} python application. It can be used:
+                    \begin{itemize}[label=--]
+                        \item<3-> for annotation purposes,
+                        \item<4-> for prediction verification,
+                        \item<5-> in a semi-automatic learning pipeline.
+                    \end{itemize}
+                    \item<6-> We can also consider error simulation using a reference data.
+                \end{itemize}
+            \end{frame}
+            \begin{frame}{More scenes}
+                \begin{itemize}[label=$\blacktriangleright$, font=\color{IGNGreen}]
+                    \item<1-> We need to procure more reconstructed scenes using $\text{Bati3D}^\text{\textregistered}$.
+                    \item<2-> A group of students (ENSG) reconstructed Elancourt and Toulouse using the \emph{3dfier} program~\cite{ledoux2011topologically}: $\gls{lod} = 1$;
+                    \item<3-> We can compare with other reconstruction methods~\cite{Lafarge2012,kelly2017bigsur}.
+                \end{itemize}
+            \end{frame}
         \subsection{Unsupervized learning}
-        \subsection{Graph kernels \& Deep learning}
+            \begin{frame}{Unsupervized learning}
+                We consider exploring unsupervized learning, to:
+                \begin{itemize}[label=$\blacktriangleright$, font=\color{IGNGreen}]
+                    \item discover errors not categorized in our taxonomy;
+                    \item scale learned classifiers over other scenes.
+                \end{itemize}
+            \end{frame}
+        \subsection{Learned features}
+            \begin{frame}{Graph kernels \& Deep learning}
+                We consider investigating:
+                \begin{itemize}[label=$\blacktriangleright$, font=\color{IGNGreen}]
+                    \item<1-> Graph kernels:
+                    \begin{itemize}
+                        \item[\color{green} +]<2-> it can be feasible: we mostly have small graphs.
+                        \item[\color{green} +]<3-> it takes advantage of the model structure better than simple histograms;
+                        \item[\color{red} --]<4-> it requires high computational capacity.
+                    \end{itemize}
+                    \item<5-> Deep learning:
+                    \begin{itemize}
+                        \item[\color{green} +]<6-> its capacity has been proven for images;
+                        \item[\color{green} +]<7-> it is highly semantic and transferable;
+                        \item[\color{red} --]<8-> it requires a big number of instances.
+                    \end{itemize}
+                \end{itemize}
+            \end{frame}
     \section{Conclusion}
-
+        \begin{frame}{Conclusion}
+            \begin{itemize}
+                \item We propose a new qualification framework for building $3D$ polyhedric models;
+                \item We categorize $3D$ model errors into a flexible taxonomy independent from the reconstruction method;
+                \item We propose a flexible and modular classification pipeline using supervised learning;
+                \item We established a baseline for geometric, radiometric and altimetric features.
+            \end{itemize}
+        \end{frame}
     \section*{References}
         \begin{frame}[allowframebreaks]{References}
             \bibliographystyle{alpha}
