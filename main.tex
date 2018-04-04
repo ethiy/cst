@@ -527,23 +527,23 @@
                 \begin{itemize}[label=$\blacktriangleright$, font=\color{IGNGreen}]
                     \item<1-> it handles well multimodal features;
                     \item<2-> being based on a boosting method, it is build to avoid overfitting;
-                    \item<3-> it is easy to infer feature importance from.
+                    \item<3-> it computes quite easily feature importance.
                 \end{itemize}
                 \uncover<3->{
-                    We choose:
+                    Parameters:
                     \begin{itemize}[label=$\blacktriangleright$, font=\color{IGNGreen}]
                         \item<4-> $4$ maximum depth to avoid overfitting the trees;
-                        \item<5-> $800$ trees to cover the whole the attributes space.
+                        \item<5-> $1000$ trees to cover the whole the attributes space.
                     \end{itemize}
                 }
             \end{frame}
             \begin{frame}{Multi-Class, Multi-Label or Multi-Stage}
                 \begin{itemize}[label=$\blacktriangleright$, font=\color{IGNGreen}]
-                    \item<1-> Depending on the \emph{finesse} and the \emph{exclusivity} parameters, we get:
+                    \item<1-> Depending on the \emph{finesse} and the \emph{exclusivity} parameters, we get a:
                     \begin{itemize}[label=--]
-                        \item<2-> \textbf{Multi-Class}: one label to predict, multiple cases to predict;
-                        \item<3-> \textbf{Multi-Label}: multiple labels to predict, each has multiple cases (in our case, \textbf{binary});
-                        \item<3-> \textbf{Multi-Stage} or Hierchical: one \textbf{Multi-Class} stage to predict the \emph{error family} and then a \textbf{Multi-Label} one to detect the corresponding \emph{atomic} errors.
+                        \item<2-> \textbf{Multi-Class} problem: one label to predict, multiple cases to predict;
+                        \item<3-> \textbf{Multi-Label} problem: multiple labels to predict, each is, in our case, \textbf{binary};
+                        \item<3-> \textbf{Multi-Stage} or Hierchical problem: one \textbf{Multi-Class} stage to predict the \emph{error family} and then a \textbf{Multi-Label} one to detect the corresponding \emph{atomic} errors.
                     \end{itemize}
                     \item<4-> We adapt any \textbf{Multi-Class} or \textbf{binary} classifier to be the \textbf{Multi-Label} setting using a \emph{OnevsAll} strategy.
                 \end{itemize}
@@ -558,9 +558,9 @@
                     \item[Algorithm:]<5-> $\text{Bati3D}^\text{\textregistered}$~\footfullcite{Durupt2006}.
                 \end{itemize}
             \end{frame}
-            \begin{frame}{Ground truth statistics}
+            \begin{frame}[plain]{Ground truth statistics}
                 \begin{table}
-                    \tiny
+                    \scriptsize
                     \begin{center}
                         \begin{tabular}{|x{2cm} | x{1.2cm} | x{2cm} | x{1.5cm} | x{1.5cm}|}
                             \hline
@@ -591,7 +591,7 @@
                     \end{center}
                 \end{table}
             \end{frame}
-            \begin{frame}{Results}
+            \begin{frame}[plain]{Results}
                 \begin{table}
                     \begin{subtable}{.4\textwidth}
                         \tiny
@@ -615,7 +615,7 @@
                                 \toprule
                                 {\bf Error} & {\bf OA} & {\bf Recall} & {\bf Precision} \\
                                 \midrule
-                                Buil. Under Seg. & $0.95$ & $0.63$ & $0.87$ \\
+                                Buil. Under Seg. & $0.95$ & $0.67$ & $0.92$ \\
                                 \midrule
                                 Buil. Over Seg. & $0.97$ & $0.16$ & $1.0$ \\
                                 \midrule
@@ -636,7 +636,9 @@
                             \caption{\tiny\label{tab::finesse3}$finesse = 3$}
                         \end{center}
                     \end{subtable}
-                    \caption{Test results for a \emph{non exclusive} qualification with $\gls{lod}=2$ using a $10- fold$ classification.}
+                    \begin{center}
+                        \caption{Test results for a \emph{non exclusive} qualification with $\gls{lod}=2$ using a $10- fold$ classification and all features ($geometric (4\times4) + altimetric (10) + radiometric (10) = 36$).}
+                    \end{center}
                 \end{table}
             \end{frame}
             \begin{frame}{Discussion}
@@ -670,16 +672,16 @@
             \begin{frame}{More scenes}
                 \begin{itemize}[label=$\blacktriangleright$, font=\color{IGNGreen}]
                     \item<1-> We need to procure more reconstructed scenes using $\text{Bati3D}^\text{\textregistered}$.
-                    \item<2-> A group of students (ENSG) reconstructed Elancourt and Toulouse using the \emph{3dfier} program~\footfullcite{ledoux2011topologically}: $\gls{lod} = 1$;
-                    \item<3-> We can compare with other reconstruction methods~\footfullcite{Lafarge2012,kelly2017bigsur}.
+                    \item<2-> A group of students (ENSG) reconstructed Elancourt and Toulouse using the \emph{3dfier} program~\citep{ledoux2011topologically}: $\gls{lod} = 1$;
+                    \item<3-> We can compare with other reconstruction methods~\citep{Lafarge2012,kelly2017bigsur}.
                 \end{itemize}
             \end{frame}
         \subsection{Unsupervized learning}
             \begin{frame}{Unsupervized learning}
                 We consider exploring unsupervized learning, to:
                 \begin{itemize}[label=$\blacktriangleright$, font=\color{IGNGreen}]
-                    \item discover errors not categorized in our taxonomy;
-                    \item scale learned classifiers over other scenes.
+                    \item<2-> discover errors not categorized in our taxonomy;
+                    \item<3-> scale learned classifiers over other scenes.
                 \end{itemize}
             \end{frame}
         \subsection{Learned features}
@@ -702,11 +704,11 @@
             \end{frame}
     \section{Conclusion}
         \begin{frame}{Conclusion}
-            \begin{itemize}
-                \item We propose a new qualification framework for building $3D$ polyhedric models;
-                \item We categorize $3D$ model errors into a flexible taxonomy independent from the reconstruction method;
-                \item We propose a flexible and modular classification pipeline using supervised learning;
-                \item We established a baseline for geometric, radiometric and altimetric features.
+            \begin{itemize}[label=$\blacktriangleright$, font=\color{IGNGreen}]
+                \item<1-> We propose a new qualification framework for building $3D$ polyhedric models;
+                \item<2-> We categorize $3D$ model errors into a flexible taxonomy independent from the reconstruction method;
+                \item<3-> We propose a fast, lightweight and modular classification pipeline using supervised learning;
+                \item<4-> We established a baseline for geometric, radiometric and altimetric features.
             \end{itemize}
         \end{frame}
     \section*{References}
