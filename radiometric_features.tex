@@ -1,0 +1,24 @@
+\documentclass[tikz, border=7pt]{standalone}
+
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+
+\usepackage{tikz}
+
+\begin{document}
+
+	\begin{tikzpicture}
+		\draw (0, 0) grid (10, 10);
+		\draw[fill=green!20] (2, 3) rectangle (3, 4);
+		\draw[fill=green!20] (3, 3) rectangle (4, 4);
+		\draw[fill=green!20] (4, 3) rectangle (5, 4);
+		\draw[fill=green!20] (4, 4) rectangle (5, 5);
+		\draw[fill=green!20] (5, 4) rectangle (6, 5);
+		\draw[fill=green!20] (6, 4) rectangle (7, 5);
+		\draw[fill=green!20] (6, 5) rectangle (7, 6);
+		\draw[fill=green!20] (7, 5) rectangle (8, 6);
+		\draw[red, line width=1mm] (2.5, 3.1) -- (7.6, 5.4);
+		\draw[black, line width=.5mm, ->] (5.05, 4.25) -- (4.638892247, 5.161586757) node[midway, left] {$\vec{n}$};
+		\draw[purple, line width=.5mm, ->] (4.5, 4.5) -- (3.5, 4.5) node[midway, above] {\bf $\nabla I$};
+	\end{tikzpicture}
+\end{document}

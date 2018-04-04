@@ -495,9 +495,16 @@
                     \caption{\label{fig::altimetric} Altimetric features illustration.}
                 \end{figure}
             \end{frame}
-            \begin{frame}{Radiometric features}
+            \begin{frame}[plain]{Radiometric features}
                 \begin{figure}
-
+                    \begin{subfigure}{.48\textwidth}
+                        \includegraphics[width=\textwidth]{images/radio_vector}
+                        \caption{\label{fig::ortho_sup} A building projection and the corresponding orthoimage.}
+                    \end{subfigure}
+                    \begin{subfigure}{.48\textwidth}
+                        \includestandalone[mode=buildnew, width=\textwidth]{radiometric_features}
+                        \caption{\label{fig::hist} We compute, for each segment in each facet, the scalar product of each intersecting pixel (in green) with the normalized image gradient at the same pixel.}
+                    \end{subfigure}
                     \caption{\label{fig::radiometric} Radiometric features illustration.}
                 \end{figure}
             \end{frame}
