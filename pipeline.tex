@@ -11,42 +11,52 @@
 \begin{document}
 \usetikzlibrary{shapes,arrows,shadows,calc}
 \tikzstyle{data}=[
-	draw, 
-	text centered, 
-	minimum height=2.5em, 
+	draw,
+	font=\Huge,
+	align=center,
+	minimum height=5em, 
 	drop shadow, 
 	rounded corners
+]
+
+\tikzstyle{data}=[
+draw,
+font=\Large,
+align=center,
+minimum height=2.5em, 
+drop shadow, 
+rounded corners
 ]
 
 	\begin{tikzpicture}
 		\node[data, fill={rgb,255:red,239;green,230;blue,28}] (model) {$3D$ model};
 		
-		\path (model.east) + (5, 0) node[data, fill={rgb,255:red,101;green,203;blue,94}] (graph) {Facet graph structure};
-		\path (model.east) + (5, -4) node[data, fill={rgb,255:red,101;green,203;blue,94}] (vector) {Model projection to $(O, \vec{i}, \vec{j})$};\\
-		\path (model.east) + (4, -6) node[data, fill={rgb,255:red,239;green,230;blue,28}] (ortho) {Orthoimage};
-		\path (model.east) + (5, -10) node[data, fill={rgb,255:red,101;green,203;blue,94}] (raster) {Model $z$ profile};
-		\path (model.east) + (4, -12) node[data, fill={rgb,255:red,239;green,230;blue,28}] (dsm) {DSM};
+		\path (model.east) + (6, 0) node[data, fill={rgb,255:red,101;green,203;blue,94}] (graph) {Facet graph\\ structure};
+		\path (model.east) + (6, -2) node[data, fill={rgb,255:red,101;green,203;blue,94}] (vector) {Model projection\\ to $(O, \vec{i}, \vec{j})$};\\
+		\path (model.east) + (4, -4) node[data, fill={rgb,255:red,239;green,230;blue,28}] (ortho) {Orthoimage};
+		\path (model.east) + (6, -6) node[data, fill={rgb,255:red,101;green,203;blue,94}] (raster) {Model $z$ profile};
+		\path (model.east) + (4, -8) node[data, fill={rgb,255:red,239;green,230;blue,28}] (dsm) {DSM};
 		
-		\path (graph.east) + (10, 0) node[data, fill={rgb,255:red,56;green,88;blue,140}, text=wheat] (geometric) {Geometric features};
-		\path (graph.east) + (10, -4) node[data, fill={rgb,255:red,56;green,88;blue,140}, text=wheat] (radiometric) {Radiometric features};
-		\path (graph.east) + (10, -10) node[data, fill={rgb,255:red,56;green,88;blue,140}, text=wheat] (altimetric) {Altimetric features};
+		\path (vector.east) + (4, 2) node[data, fill={rgb,255:red,56;green,88;blue,140}, text=wheat] (geometric) {Geometric\\features};
+		\path (vector.east) + (4, 0) node[data, fill={rgb,255:red,56;green,88;blue,140}, text=wheat] (radiometric) {Radiometric\\features};
+		\path (vector.east) + (4, -4) node[data, fill={rgb,255:red,56;green,88;blue,140}, text=wheat] (altimetric) {Altimetric\\features};
 		
-		\path (radiometric.east) + (5, 0) node[data, fill={rgb,255:red,69;green,50;blue,126}, text=wheat] (features) {Features};
+		\path (radiometric.east) + (4, 0) node[data, fill={rgb,255:red,56;green,88;blue,140}, text=wheat] (features) {Features};
 		
-		\path (features.east) + (5, 0) node[data, fill={rgb,255:red,68;green,13;blue,83}, text=wheat] (errors) {Error list};
+		\path (features.east) + (4, 0) node[data, fill={rgb,255:red,69;green,50;blue,126}, text=white, text width=2cm] (errors) {\textsc{Error\\ list}};
 		
 		\path[draw, ->, line width=1mm, rounded corners=10pt, black] (model.east) -- (graph.west);
 		\path[draw, ->, line width=1mm, rounded corners=10pt, black, dashed] (model.east) -| ($(model.east) ! .5 ! (vector.west)$) |- (vector.west);
 		\path[draw, ->, line width=1mm, rounded corners=10pt, black, dashed] (model.east) -| ($(model.east) ! .5 ! (vector.west)$) |- (raster.west);
 		
 		\path[draw, ->, line width=1mm, rounded corners=10pt, orange] (graph.east) -- (geometric.west);
-		\path[draw, ->, line width=.5mm, rounded corners=10pt, orange, dashed] (vector.10) -| ($(vector.10) ! .2 ! (geometric.west)$) |- (geometric.west);
+		\path[draw, ->, line width=.5mm, rounded corners=10pt, orange, dashed] (vector.10) -| ($(vector.10) ! .5 ! (geometric.west)$) |- (geometric.west);
 		
 		\path[draw, ->, line width=1mm, rounded corners=10pt, orange, dashed] (vector.east) -- (radiometric.west);
-		\path[draw, ->, line width=1mm, rounded corners=10pt, orange, dashed] (ortho.east) -| ($(ortho.east) ! .5 ! (radiometric.west)$) |- (radiometric.west);
+		\path[draw, ->, line width=1mm, rounded corners=10pt, orange, dashed] (ortho.east) -| ($(ortho.east) ! .6 ! (radiometric.west)$) |- (radiometric.west);
 		
 		\path[draw, ->, line width=1mm, rounded corners=10pt, orange, dashed] (raster.east) -- (altimetric.west);
-		\path[draw, ->, line width=1mm, rounded corners=10pt, orange, dashed] (dsm.east) -| ($(dsm.east) ! .5 ! (altimetric.west)$) |- (altimetric.west);
+		\path[draw, ->, line width=1mm, rounded corners=10pt, orange, dashed] (dsm.east) -| ($(dsm.east) ! .6 ! (altimetric.west)$) |- (altimetric.west);
 		
 
 		\path[draw, ->, line width=1mm, rounded corners=10pt, black!50!green, dashed] (radiometric.east) -- (features.west);
@@ -54,6 +64,20 @@
 		\path[draw, ->, line width=1mm, rounded corners=10pt, black!50!green] (geometric.east) -| ($(geometric.east) ! .5 ! (features.west)$) |- (features.west);
 				
 		\path[draw, ->, line width=1mm, rounded corners=10pt, red!80] (features.east) -- (errors.west);
+		
+		
+		\path (model) + (-1, -4) node[data, fill={rgb,255:red,239;green,230;blue,28}] (input) {Input data};
+		\path (input) + (0, -1.5) node[data, fill={rgb,255:red,101;green,203;blue,94}] (extracted) {Extracted  data};
+		\path (extracted) + (0, -1.5) node[data, fill={rgb,255:red,56;green,88;blue,140}, text=wheat] (feature) {Features};
+		\path (feature) + (0, -1.5) node[data, fill={rgb,255:red,69;green,50;blue,126}, text=wheat] (output) {Output};
+		\path (output) + (2, -1.5) node (mandatory) {};
+		\path[draw, ->, line width=1mm, rounded corners=10pt, black] (output.west) + (-.5, -1.5) -- (mandatory) node[midway, above, font=\Large] {mandatory};
+		\path (output) + (2, -2.5) node (optional) {};
+		\path[draw, ->, line width=1mm, rounded corners=10pt, black, dashed, font=\Large] (output.west) + (-.5, -2.5) -- (optional) node[midway, above] {optional};
+		\path (optional.south east) + (.5, -.5) node (corner) {};
+		\path[rounded corners, draw=black!50, dashed] (input.north west) + (-1, .5) rectangle (corner);
+		\path (input.north) + (-.75, .5) node[fill=white, text width= 2cm, font=\Large] (legend) {\textsc{Legend}};
+
 	\end{tikzpicture}
 
 \end{document}

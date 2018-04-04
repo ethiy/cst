@@ -35,12 +35,13 @@
     mcite,
     backend=bibtex,
     style=verbose,
-    citestyle=authortitle,
+    citestyle=authoryear,
     bibstyle=numeric,
     sorting=none,
     autocite=footnote,
-    maxnames=10,
+    maxnames=2,
     hyperref=true,
+    natbib=true,
     abbreviate=true
 ]{biblatex}
 \bibliography{references}
@@ -78,7 +79,7 @@
                     \begin{figure}[H]
                         \begin{center}
                             \includegraphics[height=.2\textheight]{images/citygml_lod}
-                            \caption{\label{fig::lods_citygml} \gls{lod}~\footcite{kolbe2005citygml} representation as defined in the \emph{cityGML} format.}
+                            \caption{\label{fig::lods_citygml} \gls{lod}~\footfullcite{kolbe2005citygml} representation as defined in the \emph{cityGML} format~\footfullcite{ohori2016higher}.}
                         \end{center}
                     \end{figure}
                 }
@@ -101,7 +102,7 @@
 
             \begin{frame}{Urban models applications}
                 \begin{itemize}[label=$\blacktriangleright$, font=\color{IGNGreen}]
-                    \item<1-> Urban models have a wide application range~\footcite{Biljecki2015};
+                    \item<1-> Urban models have a wide application range~\footfullcite{Biljecki2015};
                 \end{itemize}
                 \uncover<2->{
                     \begin{table}
@@ -124,12 +125,12 @@
         \subsection{Motivation}
             \begin{frame}{The need for self diagnostic}
                 \begin{itemize}[label=$\blacktriangleright$, font=\color{IGNGreen}]
-                    \item<1-> Automatic urban modeling is an active research area~\footcite{Musialski2012}, but not \textcolor{IGNRed}{yet operational}~\footcite{rottensteiner2014results}:
+                    \item<1-> Automatic urban modeling is an active research area~\citep{Musialski2012}, but not \textcolor{IGNRed}{yet operational}~\citep{rottensteiner2014results}:
                     \begin{itemize}[label=--]
                         \item reconstruction methods lack generality and compacity;
                         \item too many modelling errors require labourious manual corrections.
                     \end{itemize}
-                    \item<2-> Urban $3D$ model semantic diagnostic is not well studied~\footcite{nguatem2017modeling}.
+                    \item<2-> Urban $3D$ model semantic diagnostic is not well studied~\citep{nguatem2017modeling}.
                 \end{itemize}
                 ~\\
                 \uncover<3->{
@@ -140,7 +141,7 @@
             \end{frame}
 
             \begin{frame}{Potential use}
-                \begin{itemize}[label=$\blacktriangleright$, font=\color{IGNGreen}]
+                \begin{itemize}[label=$\blacktriangleright$, font=\color{IGNGreen}, itemsep=2em]
                     \item<1-> Change detection;
                     \item<2-> Urban models correction;
                     \item<3-> Urban reconstruction method evaluation;
@@ -149,25 +150,29 @@
             \end{frame}
     \section{State of the art}
         \begin{frame}{How to classify quality evaluation methods?}
-            \begin{itemize}[label=$\blacktriangleright$, font=\color{IGNGreen}]
-                \item Based on the output:
-                \begin{itemize}[label=--]
-                    \item Geometric precision indices;
-                    \item Semantic errors.
+            \begin{itemize}[
+                    label=$\blacktriangleright$,
+                    font=\color{IGNGreen},
+                    itemsep=2em
+                ]
+                \item<1-> Based on the output:
+                \begin{itemize}[label=--, itemsep=1em]
+                    \item<2-> Geometric precision indices;
+                    \item<2-> Semantic errors.
                 \end{itemize}
-                \item Based on the reference data:
-                \begin{itemize}[label=--]
-                    \item Manually obtained data;
-                    \item Sensor data.
+                \item<3-> Based on the reference data:
+                \begin{itemize}[label=--, itemsep=1em]
+                    \item<4-> Manually obtained data;
+                    \item<4-> Sensor data.
                 \end{itemize}
             \end{itemize}
         \end{frame}
         \subsection{Different types of reference data}
-            \begin{frame}{Manual reference data}
+            \begin{frame}{Manual data}
                 Compare reconstructed $3D$ models with ground truth reference data with higher spatial accuracy, using:
                 \begin{itemize}[label=$\blacktriangleright$, font=\color{IGNGreen}]
-                    \item<1-> geodetic measurements ($ \sigma \sim \SI{0.05}{m}$)~\footcite{Voegtle2003};
-                    \item<2-> stereo plotting~\footcite{Zeng2014}.
+                    \item<1-> geodetic measurements ($ \sigma \sim \SI{0.05}{m}$)~\citep{Kaartinen2005, Voegtle2003};
+                    \item<2-> stereo plotting~\citep{Kaartinen2005, Zeng2014}.
                 \end{itemize}
                 \uncover<3->{
                     Disadvantages:
@@ -180,8 +185,8 @@
             \begin{frame}{Sensor data}
                 Compare reconstructed $3D$ models with low semantic level sensor data, using:
                 \begin{itemize}[label=$\blacktriangleright$, font=\color{IGNGreen}]
-                    \item<1-> \gls{lidar}~\footcite{Akca2010};
-                    \item<2-> oriented aerial images~\footcite{Michelin2013}.
+                    \item<1-> \gls{lidar}~\citep{Akca2010};
+                    \item<2-> oriented aerial images~\citep{boudet2006supervised, Michelin2013}.
                 \end{itemize}
                 \uncover<3->{
                     Disadvantages:
@@ -195,9 +200,9 @@
                 Compute precision ratios from the $3D$ model which describes its quality.\\
                 At different scales:
                 \begin{itemize}[label=$\blacktriangleright$, font=\color{IGNGreen}]
-                    \item<1-> Points of interest average precision~\footcite{Voegtle2003},
-                    \item<2-> Surface discrepency to reference data~\footcite{Henricsson1997},
-                    \item<3-> Volume discrepency to reference data~\footcite{Zeng2014}.
+                    \item<1-> Points of interest average precision~\citep{Kaartinen2005, Voegtle2003},
+                    \item<2-> Surface discrepency to reference data~\citep{Kaartinen2005, Henricsson1997},
+                    \item<3-> Volume discrepency to reference data~\citep{Zeng2014}.
                 \end{itemize}
                 \uncover<4->{
                     Disadvantages:
@@ -211,11 +216,11 @@
             \begin{frame}{Semantic errors}
                 Identify the topologic and geometric errors that affects $3D$ models, using:
                 \begin{itemize}[label=$\blacktriangleright$, font=\color{IGNGreen}]
-                    \item<1-> visual inspection~\footcite{OudeElberink2010};
+                    \item<1-> visual inspection~\citep{OudeElberink2010};
                     \item<2-> supervized learning, detecting errors from a taxonomy based on:
                     \begin{itemize}[label=--]
-                        \item<3-> traffic lights paradigm~\footcite{boudet2006supervised};
-                        \item<4-> a list of reconstruction errors~\footcite{Michelin2013}.
+                        \item<3-> traffic lights paradigm~\citep{boudet2006supervised};
+                        \item<4-> a list of reconstruction errors~\citep{Michelin2013}.
                     \end{itemize}
                 \end{itemize}
                 \uncover<5->{
@@ -232,40 +237,45 @@
                     \caption{\label{fig::bib_summary} State of the art summary.}
                 \end{figure}
             \end{frame}
-            \begin{frame}{}
-
+            \begin{frame}{The ideal practical qualification paradigm}
+                \begin{itemize}[label=$\blacktriangleright$, font=\color{IGNGreen}, itemsep=2em]
+                    \item<1-> No reference data, or at least the most available sensor data;
+                    \item<2-> Semantic errors.
+                \end{itemize}
             \end{frame}
     \section{Methodology}
         \begin{frame}{How to predict reconstruction errors?}
-            The problem is modeled as a supervised learning one based on an established taxonomy:
+            The problem is modeled as a supervised learning one based on an established error taxonomy:
             \begin{enumerate}[label = (\roman*)., font=\color{IGNGreen}]
-                \item<2-> fast: does not involve heavy computing at runtime;
-                \item<3-> modular: can use multiple entries:
+                \item<2-> flexible: the error taxonomy is parametrizable;
+                \item<3-> independent: the taxonomy is agnostic towards reconstruction methods;
+                \item<4-> fast: does not involve heavy computing at runtime;
+                \item<5-> modular: can use multiple entries:
                 \begin{itemize}[label=--]
-                    \item<4-> the model itself;
-                    \item<5-> the corresponding \gls{dsm} (photo point cloud);
-                    \item<6-> the corresponding orthoimage.
+                    \item<6-> the model itself;
+                    \item<7-> the corresponding \gls{dsm} (stereoscopic or \gls{lidar} based);
+                    \item<8-> the corresponding orthoimage.
                 \end{itemize}
-                \item<7-> lightweight: does not involve heavy reference data.
+                \item<9-> lightweight: does not involve manual reference data.
             \end{enumerate}
         \end{frame}
         \subsection{Pipeline}
             \begin{frame}{The Qualification pipeline}
                 \begin{figure}
-                    \includestandalone[mode=buildnew, width=\textwidth]{pipeline}
-                    \caption{\label{fig::pipeline} Pipeline describing the qualification process.}
+                    \includestandalone[mode=buildnew, width=1.05\textwidth]{pipeline}
+                    \caption{\label{fig::pipeline} Pipeline describing the quality evaluation process.}
                 \end{figure}
             \end{frame}
             \begin{frame}{The Qualification pipeline}
                 \begin{itemize}[label=$\blacktriangleright$, font=\color{IGNGreen}]
                     \item<1-> Using \href{https://github.com/ethiy/proj.city}{\textcolor{IGNGreen}{proj.city}}, the first step extracts:
                     \begin{itemize}[label=--]
-                        \item<2-> a facet graph from the model;
+                        \item<2-> a facet adjacency graph from the model;
                         \item<2-> a $2D$ vector projection;
                         \item<2-> a $2D$ $z$ profile;
                     \end{itemize}
                     \item<3-> The second step extracts features from each representation of the model, with \href{https://github.com/ethiy/qualcity}{\textcolor{IGNGreen}{qualcity}}.
-                    \item<4-> Using a supervised classifer, trained with the defined taxonomy and parameters, we \textcolor{IGNDarkOrange}{predict} the building $3D$ model quality.
+                    \item<4-> Using a \textcolor{IGNDarkOrange}{supervised classifer}, trained with the defined \textcolor{IGNDarkOrange}{taxonomy and parameters}, at the \textcolor{IGNDarkOrange}{building level}, we \textcolor{IGNDarkOrange}{predict} the building $3D$ model quality.
                 \end{itemize}
             \end{frame}
         \subsection{Used Tools}
@@ -308,83 +318,92 @@
                         \item[$\gls{lod}2 \longrightarrow$] \textbf{Facet Errors}
                         \item[$\gls{lod}3 \longrightarrow$] \textbf{Superstructure Errors}
                     \end{itemize}
+                    \begin{figure}[H]
+                        \begin{center}
+                            \includegraphics[height=.2\textheight]{images/citygml_lod}
+                        \end{center}
+                    \end{figure}
                     \item<4-> \emph{finesse} $3$ $\longrightarrow$ \emph{atomic} errors.
                 \end{enumerate}
+
             \end{frame}
             \begin{frame}{\emph{Atomic} errors example}
-                For a \gls{lod} $ = 2$ we propose:
-                \begin{itemize}[label=$\blacktriangleright$, font=\color{IGNGreen}]
                 \only<1-5>{
-                    \item<1-> \textbf{Building Errors}:
-                    \begin{itemize}[leftmargin=10em, font=\color{IGNDarkGreen}]
-                        \item[Under segmentation:]<2-> two or more building reconstructed as one;
-                        \item[Over segmentation:]<3-> one building subdivided into two or more buildings;
-                        \item[Imprecise footprint:]<4-> inexact building footprint;
-                        \item[Imprecise height:]<5-> inexact building height;
+                    For a \gls{lod} $ = 2$, we propose:
+                    \begin{itemize}[label=$\blacktriangleright$, font=\color{IGNGreen}]
+                        \item<1-> \textbf{Building Errors}:
+                        \begin{itemize}[leftmargin=10em, font=\color{IGNDarkGreen}]
+                            \item[Under segmentation:]<2-> two or more building reconstructed as one;
+                            \item[Over segmentation:]<3-> one building subdivided into two or more buildings;
+                            \item[Imprecise footprint:]<4-> inexact building footprint;
+                            \item[Imprecise height:]<5-> inexact building height;
+                        \end{itemize}
                     \end{itemize}
                 }
-                \only<6-10>{
-                    \item<6-> \textbf{Facet Errors}:
-                    \begin{itemize}[leftmargin=10em, font=\color{IGNDarkGreen}]
-                        \item[Under segmentation:]<7-> two or more facets reconstructed as one;
-                        \item[Over segmentation:]<8-> one facet subdivided into two or more facets;
-                        \item[Imprecise Segmentation:]<9-> inexact edge betweeen facets;
-                        \item[Imprecise slope:]<10-> inexact facet slope.
+                \only<6>{
+                    \begin{figure}
+                        \begin{center}
+                            \begin{subfigure}{.28\textwidth}
+                                \fbox{\includegraphics[width=\textwidth]{images/errors/building/under_segmentation}}
+                                \caption{\label{fig::bul_under} Building under segmentation}
+                            \end{subfigure}
+                            \hspace{10pt}
+                            \begin{subfigure}{.28\textwidth}
+                                \fbox{\includegraphics[width=\textwidth]{images/errors/building/over_segmentation}}
+                                \caption{\label{fig::bul_over} Building over segmentation}
+                            \end{subfigure}
+                            \hspace{10pt}
+                            \begin{subfigure}{.28\textwidth}
+                                \fbox{\includegraphics[width=\textwidth]{images/errors/building/footprint}}
+                                \caption{\label{fig::bul_footprint} Imprecise footprint}
+                            \end{subfigure}
+                            \hspace{10pt}
+                            \begin{subfigure}{.28\textwidth}
+                                \fbox{\includegraphics[width=\textwidth]{images/errors/building/altimetric}}
+                                \caption{\label{fig::bul_height} Imprecise height}
+                            \end{subfigure}
+                            \caption{Building \emph{atomic} errors illustration.}
+                        \end{center}
+                    \end{figure}
+                }
+                \only<7-11>{
+                    For a \gls{lod} $ = 2$, we propose:
+                    \begin{itemize}[label=$\blacktriangleright$, font=\color{IGNGreen}]
+                        \item<7-> \textbf{Facet Errors}:
+                        \begin{itemize}[leftmargin=10em, font=\color{IGNDarkGreen}]
+                            \item[Under segmentation:]<8-> two or more facets reconstructed as one;
+                            \item[Over segmentation:]<9-> one facet subdivided into two or more facets;
+                            \item[Imprecise Segmentation:]<10-> inexact edge betweeen facets;
+                            \item[Imprecise slope:]<11-> inexact facet slope.
+                        \end{itemize}
                     \end{itemize}
                 }
-            \end{itemize}
-            \end{frame}
-            \begin{frame}{Building errors}
-                \begin{figure}
-                    \begin{center}
-                        \begin{subfigure}{.28\textwidth}
-                            \fbox{\includegraphics[width=\textwidth]{images/errors/building/under_segmentation}}
-                            \caption{\label{fig::bul_under} Building under segmentation}
-                        \end{subfigure}
-                        \hspace{10pt}
-                        \begin{subfigure}{.28\textwidth}
-                            \fbox{\includegraphics[width=\textwidth]{images/errors/building/over_segmentation}}
-                            \caption{\label{fig::bul_over} Building over segmentation}
-                        \end{subfigure}
-                        \hspace{10pt}
-                        \begin{subfigure}{.28\textwidth}
-                            \fbox{\includegraphics[width=\textwidth]{images/errors/building/footprint}}
-                            \caption{\label{fig::bul_footprint} Imprecise footprint}
-                        \end{subfigure}
-                        \hspace{10pt}
-                        \begin{subfigure}{.28\textwidth}
-                            \fbox{\includegraphics[width=\textwidth]{images/errors/building/altimetric}}
-                            \caption{\label{fig::bul_height} Imprecise height}
-                        \end{subfigure}
-                        \caption{Building \emph{atomic} errors illustration.}
-                    \end{center}
-                \end{figure}
-            \end{frame}
-            \begin{frame}{Facet errors}
-                \begin{figure}
-                    \begin{center}
-                        \begin{subfigure}{.28\textwidth}
-                            \fbox{\includegraphics[width=\textwidth]{images/errors/facet/under_segmentation}}
-                            \caption{\label{fig::fac_under} Facet under segmentation}
-                        \end{subfigure}
-                        \hspace{10pt}
-                        \begin{subfigure}{.28\textwidth}
-                            \fbox{\includegraphics[width=\textwidth]{images/errors/facet/over_segmentation}}
-                            \caption{\label{fig::fac_over} Facet over segmentation}
-                        \end{subfigure}
-                        \hspace{10pt}
-                        \begin{subfigure}{.28\textwidth}
-                            \fbox{\includegraphics[width=\textwidth]{images/errors/facet/mis_segmentation}}
-                            \caption{\label{fig::fac_footprint} Facet imprecise segmentation}
-                        \end{subfigure}
-                        \hspace{10pt}
-                        \begin{subfigure}{.28\textwidth}
-                            \fbox{\includegraphics[width=\textwidth]{images/errors/facet/slope}}
-                            \caption{\label{fig::fac_height} Imprecise height}
-                        \end{subfigure}
-                        \caption{Facet \emph{atomic} errors illustration.}
-                    \end{center}
-                \end{figure}
+                \only<12>{
+                    \begin{figure}
+                        \begin{center}
+                            \begin{subfigure}{.28\textwidth}
+                                \fbox{\includegraphics[width=\textwidth]{images/errors/facet/under_segmentation}}
+                                \caption{\label{fig::fac_under} Facet under segmentation}
+                            \end{subfigure}
+                            \hspace{10pt}
+                            \begin{subfigure}{.28\textwidth}
+                                \fbox{\includegraphics[width=\textwidth]{images/errors/facet/over_segmentation}}
+                                \caption{\label{fig::fac_over} Facet over segmentation}
+                            \end{subfigure}
+                            \hspace{10pt}
+                            \begin{subfigure}{.28\textwidth}
+                                \fbox{\includegraphics[width=\textwidth]{images/errors/facet/mis_segmentation}}
+                                \caption{\label{fig::fac_footprint} Facet imprecise segmentation}
+                            \end{subfigure}
+                            \hspace{10pt}
+                            \begin{subfigure}{.28\textwidth}
+                                \fbox{\includegraphics[width=\textwidth]{images/errors/facet/slope}}
+                                \caption{\label{fig::fac_height} Imprecise height}
+                            \end{subfigure}
+                            \caption{Facet \emph{atomic} errors illustration.}
+                        \end{center}
+                    \end{figure}
+                }
             \end{frame}
             \begin{frame}{Taxonomy scores}
                 \begin{itemize}[label=$\blacktriangleright$, font=\color{IGNGreen}]
@@ -417,7 +436,7 @@
                 \begin{enumerate}[label = (\roman*)., font=\color{black}]
                     \item<1-> Basic intrinsic descriptor:
                     \begin{itemize}[label=$\blacktriangleright$, font=\color{IGNGreen}]
-                        \item<2-> \textbf{Geometric} features based on the graph $\mathscr{G}=(facets, E)$;
+                        \item<2-> \textbf{Geometric} features based on the graph $\mathscr{G}=(facets, E)$\footnote{$E \triangleq \{\text{f and g are adjacent}: (f, g) \in facets \times facets\}$};
                     \end{itemize}
                     \item<3-> Optional descriptors:
                     \begin{itemize}[label=$\blacktriangleright$, font=\color{blue}]
@@ -529,7 +548,7 @@
                     \item[Area:]<2-> \SI{0.2}{\km \squared};
                     \item[Buildings:]<3-> $502$;
                     \item[Type:]<4-> mostly residential district with a school and one gas station;
-                    \item[Algorithm:]<5-> $\text{Bati3D}^\text{\textregistered}$~\footcite{Durupt2006}.
+                    \item[Algorithm:]<5-> $\text{Bati3D}^\text{\textregistered}$~\footfullcite{Durupt2006}.
                 \end{itemize}
             \end{frame}
             \begin{frame}{Ground truth statistics}
@@ -644,8 +663,8 @@
             \begin{frame}{More scenes}
                 \begin{itemize}[label=$\blacktriangleright$, font=\color{IGNGreen}]
                     \item<1-> We need to procure more reconstructed scenes using $\text{Bati3D}^\text{\textregistered}$.
-                    \item<2-> A group of students (ENSG) reconstructed Elancourt and Toulouse using the \emph{3dfier} program~\footcite{ledoux2011topologically}: $\gls{lod} = 1$;
-                    \item<3-> We can compare with other reconstruction methods~\footcite{Lafarge2012,kelly2017bigsur}.
+                    \item<2-> A group of students (ENSG) reconstructed Elancourt and Toulouse using the \emph{3dfier} program~\footfullcite{ledoux2011topologically}: $\gls{lod} = 1$;
+                    \item<3-> We can compare with other reconstruction methods~\footfullcite{Lafarge2012,kelly2017bigsur}.
                 \end{itemize}
             \end{frame}
         \subsection{Unsupervized learning}
@@ -682,5 +701,9 @@
                 \item We propose a flexible and modular classification pipeline using supervised learning;
                 \item We established a baseline for geometric, radiometric and altimetric features.
             \end{itemize}
+        \end{frame}
+    \section*{References}
+        \begin{frame}[allowframebreaks]{References}
+            \printbibliography
         \end{frame}
 \end{document}

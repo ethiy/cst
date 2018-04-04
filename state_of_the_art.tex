@@ -52,7 +52,7 @@
 }
 
 	\begin{tikzpicture}
-		\node[data]  (manual) {\textbf{Manual reference data}};
+		\node[data]  (manual) {\textbf{Manual data}};
 		\path (manual.east) + (4, 0) node[data] (sensor) {\textbf{Sensor data}};
 		\path (manual.north west) + (-.5, 2) node[output] (semantic_errors) {\rotatebox{90}{\textbf{Semantic errors}}};
 		\path (semantic_errors.north) + (0, 2) node[output] (geom_ind) {\rotatebox{90}{\textbf{Geometric indices}}};
