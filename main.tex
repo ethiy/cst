@@ -591,7 +591,157 @@
                     \end{center}
                 \end{table}
             \end{frame}
-            \begin{frame}[plain]{Results}
+            \begin{frame}[plain]{Results (Geometric only)}
+                \begin{table}
+                    \begin{subtable}{.4\textwidth}
+                        \tiny
+                        \begin{center}
+                            \begin{tabular}{x{1cm} x{.5cm} x{.5cm} x{.5cm}}
+                                \toprule
+                                {\bf Error} & {\bf OA} & {\bf Recall} & {\bf Precision} \\
+                                \midrule
+                                Building Errors & $0.82$ & $0.46$ & $0.78$ \\
+                                \midrule
+                                Facet Errors & $0.91$ & $0.96$ & $0.94$ \\
+                                \bottomrule
+                            \end{tabular}
+                            \caption{\tiny\label{tab::finesse2} $finesse = 2$}
+                        \end{center}
+                    \end{subtable}
+                    \begin{subtable}{.45\textwidth}
+                        \tiny
+                        \begin{center}
+                            \begin{tabular}{x{1.75cm} x{.5cm} x{.5cm} x{.5cm}}
+                                \toprule
+                                {\bf Error} & {\bf OA} & {\bf Recall} & {\bf Precision} \\
+                                \midrule
+                                Buil. Under Seg. & $0.93$ & $0.44$ & $0.85$ \\
+                                \midrule
+                                Buil. Over Seg. & $0.97$ & $0.25$ & $1.0$ \\
+                                \midrule
+                                Footprint & $0.90$ & $0.26$ & $0.88$ \\
+                                \midrule
+                                Height & $0.99$ & $0.0$ & --- \\
+                                \midrule
+                                \midrule
+                                Fac. Under Seg. & $0.90$ & $0.06$ & $0.14$ \\
+                                \midrule
+                                Fac. Over Seg. & $0.99$ & $1.0$ & $0.99$ \\
+                                \midrule
+                                Fac. Impr. Seg. & $0.93$ & $0.03$ & $1.0$\\
+                                \midrule
+                                Slope & $0.97$ & $0.0$ & ---\\
+                                \bottomrule
+                            \end{tabular}
+                            \caption{\tiny\label{tab::finesse3}$finesse = 3$}
+                        \end{center}
+                    \end{subtable}
+                    \begin{center}
+                        \caption{Test results for a \emph{non exclusive} qualification with $\gls{lod}=2$ using a $10- fold$ classification and only geometric ($16$) features.}
+                    \end{center}
+                \end{table}
+            \end{frame}
+            \begin{frame}[plain]{Results (Geometric and Altimetric)}
+                \begin{table}
+                    \begin{subtable}{.4\textwidth}
+                        \tiny
+                        \begin{center}
+                            \begin{tabular}{x{1cm} x{.5cm} x{.5cm} x{.5cm}}
+                                \toprule
+                                {\bf Error} & {\bf OA} & {\bf Recall} & {\bf Precision} \\
+                                \midrule
+                                Building Errors & $0.81$ & $0.39$ & $0.76$ \\
+                                \midrule
+                                Facet Errors & $0.92$ & $0.97$ & $0.93$ \\
+                                \bottomrule
+                            \end{tabular}
+                            \caption{\tiny\label{tab::finesse2} $finesse = 2$}
+                        \end{center}
+                    \end{subtable}
+                    \begin{subtable}{.45\textwidth}
+                        \tiny
+                        \begin{center}
+                            \begin{tabular}{x{1.75cm} x{.5cm} x{.5cm} x{.5cm}}
+                                \toprule
+                                {\bf Error} & {\bf OA} & {\bf Recall} & {\bf Precision} \\
+                                \midrule
+                                Buil. Under Seg. & $0.95$ & $0.63$ & $0.87$ \\
+                                \midrule
+                                Buil. Over Seg. & $0.97$ & $0.16$ & $1.0$ \\
+                                \midrule
+                                Footprint & $0.91$ & $0.24$ & $0.93$ \\
+                                \midrule
+                                Height & $0.99$ & $0.0$ & --- \\
+                                \midrule
+                                \midrule
+                                Fac. Under Seg. & $0.92$ & $0.14$ & $0.41$ \\
+                                \midrule
+                                Fac. Over Seg. & $0.99$ & $1.0$ & $0.99$ \\
+                                \midrule
+                                Fac. Impr. Seg. & $0.92$ & $0.0$ & ---\\
+                                \midrule
+                                Slope & $0.97$ & $0.14$ & $1.0$\\
+                                \bottomrule
+                            \end{tabular}
+                            \caption{\tiny\label{tab::finesse3}$finesse = 3$}
+                        \end{center}
+                    \end{subtable}
+                    \begin{center}
+                        \caption{Test results for a \emph{non exclusive} qualification with $\gls{lod}=2$ using a $10- fold$ classification and geometric and altimetric ($4\times4 + 10 = 26$) features.}
+                    \end{center}
+                \end{table}
+            \end{frame}
+            \begin{frame}[plain]{Results (Geometric and Radiometric)}
+                \begin{table}
+                    \begin{subtable}{.4\textwidth}
+                        \tiny
+                        \begin{center}
+                            \begin{tabular}{x{1cm} x{.5cm} x{.5cm} x{.5cm}}
+                                \toprule
+                                {\bf Error} & {\bf OA} & {\bf Recall} & {\bf Precision} \\
+                                \midrule
+                                Building Errors & $0.79$ & $0.35$ & $0.72$ \\
+                                \midrule
+                                Facet Errors & $0.90$ & $0.95$ & $0.92$ \\
+                                \bottomrule
+                            \end{tabular}
+                            \caption{\tiny\label{tab::finesse2} $finesse = 2$}
+                        \end{center}
+                    \end{subtable}
+                    \begin{subtable}{.45\textwidth}
+                        \tiny
+                        \begin{center}
+                            \begin{tabular}{x{1.75cm} x{.5cm} x{.5cm} x{.5cm}}
+                                \toprule
+                                {\bf Error} & {\bf OA} & {\bf Recall} & {\bf Precision} \\
+                                \midrule
+                                Buil. Under Seg. & $0.95$ & $0.71$ & $0.88$ \\
+                                \midrule
+                                Buil. Over Seg. & $0.96$ & $0.06$ & $1.0$ \\
+                                \midrule
+                                Footprint & $0.89$ & $0.13$ & $1.0$ \\
+                                \midrule
+                                Height & $0.99$ & $0.0$ & --- \\
+                                \midrule
+                                \midrule
+                                Fac. Under Seg. & $0.91$ & $0.09$ & $0.23$ \\
+                                \midrule
+                                Fac. Over Seg. & $0.99$ & $1.0$ & $0.99$ \\
+                                \midrule
+                                Fac. Impr. Seg. & $0.92$ & $0.0$ & ---\\
+                                \midrule
+                                Slope & $0.97$ & $0.07$ & $1.0$\\
+                                \bottomrule
+                            \end{tabular}
+                            \caption{\tiny\label{tab::finesse3}$finesse = 3$}
+                        \end{center}
+                    \end{subtable}
+                    \begin{center}
+                        \caption{Test results for a \emph{non exclusive} qualification with $\gls{lod}=2$ using a $10- fold$ classification and geometric and radiometric ($4\times4 + 10 = 26$) features.}
+                    \end{center}
+                \end{table}
+            \end{frame}
+            \begin{frame}[plain]{Results (All)}
                 \begin{table}
                     \begin{subtable}{.4\textwidth}
                         \tiny
@@ -637,15 +787,15 @@
                         \end{center}
                     \end{subtable}
                     \begin{center}
-                        \caption{Test results for a \emph{non exclusive} qualification with $\gls{lod}=2$ using a $10- fold$ classification and all features ($geometric (4\times4) + altimetric (10) + radiometric (10) = 36$).}
+                        \caption{Test results for a \emph{non exclusive} qualification with $\gls{lod}=2$ using a $10- fold$ classification and all ($(4\times4 + 10 + 10) = 36$) features.}
                     \end{center}
                 \end{table}
             \end{frame}
             \begin{frame}{Discussion}
                 \begin{itemize}[label=$\blacktriangleright$, font=\color{IGNGreen}]
                     \item<1-> Unbalanced \textbf{Building Errors} ($24\%$ among the $502$ instances) $\Rightarrow$ small recall.
-                    \item<2-> Among the \textbf{Facet Errors}, all but \textbf{Facet Over segmentation} suffer from the unbalanced dataset (ratio $ < 7\%$) $\Rightarrow$ small recall and big overall accuracy.
-                    \item<3-> Geometric features alone can predict errors with a comparable order of accuracy.
+                    \item<2-> Among the \textbf{Facet Errors}, all but \textbf{Facet Over segmentation} suffer from the unbalanced dataset ($ < 7\%$ among the $502$ instances) $\Rightarrow$ small recall and big overall accuracy.
+                    \item<3-> Geometric features alone can predict errors with a comparable order of accuracy as with all features. It can even outperform alone for some individual cases (\textbf{Building under segmentation}).
                 \end{itemize}
             \end{frame}
     \section{Perspectives}
@@ -715,4 +865,5 @@
         \begin{frame}[allowframebreaks]{References}
             \printbibliography
         \end{frame}
+    \appendix
 \end{document}
