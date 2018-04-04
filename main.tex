@@ -543,9 +543,9 @@
                     \begin{itemize}[label=--]
                         \item<2-> \textbf{Multi-Class} problem: one label to predict, multiple cases to predict;
                         \item<3-> \textbf{Multi-Label} problem: multiple labels to predict, each is, in our case, \textbf{binary};
-                        \item<3-> \textbf{Multi-Stage} or Hierchical problem: one \textbf{Multi-Class} stage to predict the \emph{error family} and then a \textbf{Multi-Label} one to detect the corresponding \emph{atomic} errors.
+                        \item<4-> \textbf{Multi-Stage} or Hierchical problem: one \textbf{Multi-Class} stage to predict the \emph{error family} and then a \textbf{Multi-Label} one to detect the corresponding \emph{atomic} errors.
                     \end{itemize}
-                    \item<4-> We adapt any \textbf{Multi-Class} or \textbf{binary} classifier to be the \textbf{Multi-Label} setting using a \emph{OnevsAll} strategy.
+                    \item<5-> We adapt any \textbf{Multi-Class} or \textbf{binary} classifier to be the \textbf{Multi-Label} setting using a \emph{OnevsAll} strategy.
                 \end{itemize}
             \end{frame}
         \subsection{Results}
@@ -855,7 +855,7 @@
     \section{Conclusion}
         \begin{frame}{Conclusion}
             \begin{itemize}[label=$\blacktriangleright$, font=\color{IGNGreen}]
-                \item<1-> We propose a new qualification framework for building $3D$ polyhedric models;
+                \item<1-> We propose a new qualification framework for building $3D$ polyhedral models;
                 \item<2-> We categorize $3D$ model errors into a flexible taxonomy independent from the reconstruction method;
                 \item<3-> We propose a fast, lightweight and modular classification pipeline using supervised learning;
                 \item<4-> We established a baseline for geometric, radiometric and altimetric features.
