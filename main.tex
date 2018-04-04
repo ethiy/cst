@@ -201,7 +201,7 @@
                 At different scales:
                 \begin{itemize}[label=$\blacktriangleright$, font=\color{IGNGreen}]
                     \item<1-> Points of interest average precision~\citep{Kaartinen2005, Voegtle2003},
-                    \item<2-> Surface discrepency to reference data~\citep{Kaartinen2005, Henricsson1997},
+                    \item<2-> Surface discrepency to reference data~\citep{Kaartinen2005, Henricsson1997,Zeng2014},
                     \item<3-> Volume discrepency to reference data~\citep{Zeng2014}.
                 \end{itemize}
                 \uncover<4->{
@@ -240,7 +240,7 @@
             \begin{frame}{The ideal practical qualification paradigm}
                 \begin{itemize}[label=$\blacktriangleright$, font=\color{IGNGreen}, itemsep=2em]
                     \item<1-> No reference data, or at least the most available sensor data;
-                    \item<2-> Semantic errors.
+                    \item<2-> Semantic errors independent from reconstruction methods.
                 \end{itemize}
             \end{frame}
     \section{Methodology}
@@ -529,11 +529,11 @@
                     \item<2-> being based on a boosting method, it is build to avoid overfitting;
                     \item<3-> it computes quite easily feature importance.
                 \end{itemize}
-                \uncover<3->{
+                \uncover<4->{
                     Parameters:
                     \begin{itemize}[label=$\blacktriangleright$, font=\color{IGNGreen}]
-                        \item<4-> $4$ maximum depth to avoid overfitting the trees;
-                        \item<5-> $1000$ trees to cover the whole the attributes space.
+                        \item<5-> $4$ maximum depth to avoid overfitting the trees;
+                        \item<6-> $1000$ trees to cover the whole the attributes space.
                     \end{itemize}
                 }
             \end{frame}
@@ -552,7 +552,7 @@
             \begin{frame}{Used Data}
                 \begin{itemize}[leftmargin=6em, font=\color{IGNDarkGreen}]
                     \item[Town:]<1-> Elancourt (Yvelines, France);
-                    \item[Area:]<2-> \SI{0.2}{\km \squared};
+                    \item[Area:]<2-> \SI{0.2}{\km\squared};
                     \item[Buildings:]<3-> $502$;
                     \item[Type:]<4-> mostly residential district with a school and one gas station;
                     \item[Algorithm:]<5-> $\text{Bati3D}^\text{\textregistered}$~\footfullcite{Durupt2006}.
