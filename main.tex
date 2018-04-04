@@ -787,7 +787,7 @@
                         \end{center}
                     \end{subtable}
                     \begin{center}
-                        \caption{Test results for a \emph{non exclusive} qualification with $\gls{lod}=2$ using a $10- fold$ classification and all ($(4\times4 + 10 + 10) = 36$) features.}
+                        \caption{Test results for a \emph{non exclusive} qualification with $\gls{lod}=2$ using a $10- fold$ classification and all ($4\times4 + 10 + 10 = 36$) features.}
                     \end{center}
                 \end{table}
             \end{frame}
@@ -795,7 +795,7 @@
                 \begin{itemize}[label=$\blacktriangleright$, font=\color{IGNGreen}]
                     \item<1-> Unbalanced \textbf{Building Errors} ($24\%$ among the $502$ instances) $\Rightarrow$ small recall.
                     \item<2-> Among the \textbf{Facet Errors}, all but \textbf{Facet Over segmentation} suffer from the unbalanced dataset ($ < 7\%$ among the $502$ instances) $\Rightarrow$ small recall and big overall accuracy.
-                    \item<3-> Geometric features alone can predict errors with a comparable order of accuracy as with all features. It can even outperform alone for some individual cases (\textbf{Building under segmentation}).
+                    \item<3-> Geometric features alone can predict errors with a comparable order of accuracy as with other combinations. It is only outperformed for a limited individual cases (\textbf{Building under segmentation}: $\Delta recall > 20\%$).
                 \end{itemize}
             \end{frame}
     \section{Perspectives}
@@ -813,7 +813,7 @@
                     \item<2-> A Master's (PPMD) student made a \emph{QT5} \acrshort{gui} python application. It can be used:
                     \begin{itemize}[label=--]
                         \item<3-> for annotation purposes,
-                        \item<4-> for prediction verification,
+                        \item<4-> for error prediction verification in an operational setup,
                         \item<5-> in a semi-automatic learning pipeline.
                     \end{itemize}
                     \item<6-> We can also consider error simulation using a reference data.
