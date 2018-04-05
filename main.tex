@@ -217,7 +217,7 @@
                 Identify the topologic and geometric errors that affects $3D$ models, using:
                 \begin{itemize}[label=$\blacktriangleright$, font=\color{IGNGreen}]
                     \item<1-> visual inspection~\citep{OudeElberink2010};
-                    \item<2-> supervized learning, detecting errors from a taxonomy based on:
+                    \item<2-> supervised learning, detecting errors from a taxonomy based on:
                     \begin{itemize}[label=--]
                         \item<3-> traffic lights paradigm~\citep{boudet2006supervised};
                         \item<4-> a list of reconstruction errors~\citep{Michelin2013}.
@@ -292,7 +292,7 @@
                 This program:
                 \begin{itemize}[label=$\blacktriangleright$, font=\color{IGNGreen}]
                     \item<1-> reads and computes features from the previously saved representations;
-                    \item<2-> retreives models labels;
+                    \item<2-> retrieves models labels;
                     \item<3-> infers the classification problem from the taxonomy parameters;
                     \item<3-> trains and tests the chosen classifier model.
                 \end{itemize}
@@ -523,7 +523,7 @@
             \end{frame}
         \subsection{Classifiers}
             \begin{frame}{Random Forest}
-                Any supervized classifier can be used in our problem. We opted for a Random Forest classifier, because:
+                Any supervised classifier can be used in our problem. We opted for a Random Forest classifier, because:
                 \begin{itemize}[label=$\blacktriangleright$, font=\color{IGNGreen}]
                     \item<1-> it handles well multimodal features;
                     \item<2-> being based on a boosting method, it is build to avoid overfitting;
@@ -814,7 +814,7 @@
                     \begin{itemize}[label=--]
                         \item<3-> for annotation purposes,
                         \item<4-> for error prediction verification in an operational setup,
-                        \item<5-> in a semi-supervized learning pipeline.
+                        \item<5-> in a semi-supervised learning pipeline.
                     \end{itemize}
                     \item<6-> We can also consider error simulation using a reference data.
                 \end{itemize}
@@ -826,9 +826,9 @@
                     \item<3-> We can compare with other reconstruction methods~\citep{Lafarge2012,kelly2017bigsur}.
                 \end{itemize}
             \end{frame}
-        \subsection{Unsupervized learning}
-            \begin{frame}{Unsupervized learning}
-                We consider exploring unsupervized learning, to:
+        \subsection{Unsupervised learning}
+            \begin{frame}{Unsupervised learning}
+                We consider exploring unsupervised learning, to:
                 \begin{itemize}[label=$\blacktriangleright$, font=\color{IGNGreen}]
                     \item<2-> discover errors not categorized in our taxonomy;
                     \item<3-> scale learned classifiers over other scenes.
