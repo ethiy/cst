@@ -398,7 +398,7 @@
                             \hspace{10pt}
                             \begin{subfigure}{.28\textwidth}
                                 \fbox{\includegraphics[width=\textwidth]{images/errors/facet/slope}}
-                                \caption{\label{fig::fac_height} Imprecise height}
+                                \caption{\label{fig::fac_height} Imprecise slope}
                             \end{subfigure}
                             \caption{Facet \emph{atomic} errors illustration.}
                         \end{center}
@@ -407,7 +407,7 @@
             \end{frame}
             \begin{frame}{Taxonomy scores}
                 \begin{itemize}[label=$\blacktriangleright$, font=\color{IGNGreen}]
-                    \item<1-> Each \emph{atomic} error has a score assigned to it.
+                    \item<1-> Each \emph{atomic} error has a confidence score assigned to it.
                     \item<2-> The scores are from \numrange{0}{10} $\Rightarrow$ discretisation of the probability or the error occurence.
                     \item<3-> A parent error inherits the score from its child errors:
                     \begin{equation*}
@@ -564,7 +564,7 @@
                     \begin{center}
                         \begin{tabular}{|x{2cm} | x{1.2cm} | x{2cm} | x{1.5cm} | x{1.5cm}|}
                             \hline
-                            \multicolumn{1}{|c|}{\textbf{Error Class}} & \textbf{Occurence ratio} & \textbf{\emph{Atomic} error} & \textbf{Family conditionnal occurence ratio} & \textbf{Absolute occurence ratio} \\
+                            \multicolumn{1}{|c|}{\textbf{Error Family}} & \textbf{Occurence ratio} & \textbf{\emph{Atomic} error} & \textbf{Family conditionnal occurence ratio} & \textbf{Absolute occurence ratio} \\
                             \hline
                             Unqualifiable & $0.0876$ & -- & -- & -- \\
                             \hline
@@ -814,7 +814,7 @@
                     \begin{itemize}[label=--]
                         \item<3-> for annotation purposes,
                         \item<4-> for error prediction verification in an operational setup,
-                        \item<5-> in a semi-automatic learning pipeline.
+                        \item<5-> in a semi-supervized learning pipeline.
                     \end{itemize}
                     \item<6-> We can also consider error simulation using a reference data.
                 \end{itemize}
